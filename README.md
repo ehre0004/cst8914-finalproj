@@ -6,3 +6,5 @@ This project is our single-page application (SPA) for CST8914, Accessibile by De
 - Catherine Daigle
 - Rae Ehret
 - Yiting Yao
+
+[View this page in GitHub Pages](https://ehre0004.github.io/cst8914-finalproj/)
