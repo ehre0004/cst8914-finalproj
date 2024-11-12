@@ -27,7 +27,6 @@ for (let i=0; i<dropdowns.length; i++) {
 /**
  * 
  * @param {Event} e
- * @param {Element} toggle
  */
 function toggleDropdownMenu(e) {
     e.preventDefault;
