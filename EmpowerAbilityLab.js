@@ -7,10 +7,28 @@ knowledgeRunner()
 
 
 
-/* ************************************** Rae Ehret's Workspace *************************************** */
-/* ******************************************** NAVIGATION ******************************************** */
-// notes to others, please do not write to the following variables/functions: 
-// navlinks, navdropdowns, defaultBehaviour, toggleDropdownMenu.
+/* ************************************** Rae Ehret's Workspace ***************************************
+ * ******************************************** NAVIGATION ********************************************
+ * Notes: I will clean this area up later. For now, I just need proof it works.
+ * This workspace is divided, and in each subsection is a pattern of: [binding event listeners] ... [function that does something]
+ * please do not write to the following variables/functions: 
+ *      navlinks, navdropdowns, defaultBehaviour, toggleDropdownMenu
+ */
+
+/**
+ * Returns true if ANY dropdown-menu also has class "show"
+ */
+function checkIfDropdownsAreOpen() {
+    let isOpen = false;
+    let dropdowns = document.getElementsByClassName("dropdown-menu");
+    for (let i=0; i<dropdowns.length; i++) {
+        if (dropdowns.item(i).classList.contains("show")) {
+            isOpen = true;
+        }
+    }
+    return true;
+}
+
 var navlinks = document.getElementsByClassName("nav-item");
 for (let i=0; i<navlinks.length; i++) {
     navlinks.item(i).addEventListener("click", defaultBehaviour, false);
@@ -26,6 +44,21 @@ function defaultBehaviour(e) {
     // TODO: check if nav-item is also a dropdown-toggle. If so, break out of function by using: return;
     // TODO: programmatically set div id's to something that can be swapped out easily with string replacement in order to retrieve tab panel id's and swap
     // TODO: lastly, set focus to the first header in the content: the h1 in the 'jumbotron'. this is for screen reader accessibility
+}
+
+// Create function to handle clicking outside
+window.addEventListener('mousedown', onBackgroundMousedown, true);
+/**
+ * This code is adapted from the lab 10 assignment.
+ * @param {Event} e 
+ */
+function onBackgroundMousedown(e) {
+    if (checkIfDropdownsAreOpen()) {
+      let popupsToClose = document.getElementsByClassName("show");
+      for (let i=0; i<popupsToClose.length; i++) {
+        popupsToClose.item(i).classList.remove("show");
+      }
+    }
 }
 
 // navigation dropdown behaviour
