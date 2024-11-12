@@ -46,6 +46,8 @@ function defaultBehaviour(e) {
     // TODO: lastly, set focus to the first header in the content: the h1 in the 'jumbotron'. this is for screen reader accessibility
 }
 
+/* ****************************************************************************************** */
+
 // Create function to handle clicking outside
 window.addEventListener('mousedown', onBackgroundMousedown, true);
 /**
@@ -60,6 +62,8 @@ function onBackgroundMousedown(e) {
       }
     }
 }
+
+/* ****************************************************************************************** */
 
 // navigation dropdown behaviour
 // this code navigates the DOM and sets event listeners to the toggles
@@ -103,3 +107,6 @@ function toggleDropdownMenu(e) {
         // TODO: set focus to first index of menu
     }
 }
+
+/* ****************************************************************************************** */
+/* ********************************** END NAVIGATION **************************************** */
