@@ -13,16 +13,19 @@ knowledgeRunner()
 // prevent default behaviour (navigating to "#" or whatever href value is set)
 var navlinks = document.getElementsByClassName("nav-item");
 for (let i=0; i<navlinks.length; i++) {
-    navlinks.item(i).addEventListener("click", preventDefaultBehaviour, false);
+    navlinks.item(i).addEventListener("click", defaultBehaviour, false);
 }
 
 /**
  * Prevent default behaviour, i.e. not navigating by href value
- * NOTE: this might be replaced by a function for the tabbing behaviour, just expand on this and rename function
+ * NOTE: just expand on this to include tabbing behaviour
  * @param {Event} e 
  */
-function preventDefaultBehaviour(e) {
+function defaultBehaviour(e) {
     e.preventDefault();
+    // TODO: check if nav-item is also a dropdown-toggle. If so, break out of function by using: return;
+    // TODO: programmatically set div id's to something that can be swapped out easily with string replacement in order to retrieve tab panel id's and swap
+    // TODO: lastly, set focus to the first header in the content: the h1 in the 'jumbotron'. this is for screen reader accessibility
 }
 
 // navigation dropdown behaviour
@@ -64,5 +67,6 @@ function toggleDropdownMenu(e) {
         menu.classList.remove("show");
     } else {
         menu.classList.add("show");
+        // TODO: set focus to first index of menu
     }
 }
