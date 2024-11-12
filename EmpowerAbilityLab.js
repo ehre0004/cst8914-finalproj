@@ -17,7 +17,8 @@ for (let i=0; i<navlinks.length; i++) {
 }
 
 /**
- * Prevent default behaviour, i.e. navigating by href value
+ * Prevent default behaviour, i.e. not navigating by href value
+ * NOTE: this might be replaced by a function for the tabbing behaviour, just expand on this and rename function
  * @param {Event} e 
  */
 function preventDefaultBehaviour(e) {
