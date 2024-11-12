@@ -9,6 +9,7 @@ knowledgeRunner()
 
 /* ************************************** Rae Ehret's Workspace *************************************** */
 /* ******************************************** NAVIGATION ******************************************** */
+// notes to others, please do not write to the following variables/functions: navlinks, navdropdowns, preventDefaultBehaviour, toggleDropdownMenu
 // prevent default behaviour (navigating to "#" or whatever href value is set)
 var navlinks = document.getElementsByClassName("nav-item");
 for (let i=0; i<navlinks.length; i++) {
@@ -26,10 +27,10 @@ function preventDefaultBehaviour(e) {
 // navigation dropdown behaviour
 // this code navigates the DOM and sets event listeners to the toggles
 // [li] should be class "dropdown", toggling links [a] "dropdown-toggle", and menus of links [ul] "dropdown-menu"
-var dropdowns = document.getElementsByClassName("dropdown");
-for (let i=0; i<dropdowns.length; i++) {
+var navdropdowns = document.getElementsByClassName("dropdown");
+for (let i=0; i<navdropdowns.length; i++) {
     let toggle, param;
-    let nodes = dropdowns.item(i).children;
+    let nodes = navdropdowns.item(i).children;
     for (let y=0; y<nodes.length; y++) {
         // check for the toggling node amongst the child nodes, and set our toggling node
         if (nodes.item(y).classList.contains("dropdown-toggle")) {
