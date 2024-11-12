@@ -9,7 +9,8 @@ knowledgeRunner()
 
 /* ************************************** Rae Ehret's Workspace *************************************** */
 /* ******************************************** NAVIGATION ******************************************** */
-// notes to others, please do not write to the following variables/functions: navlinks, navdropdowns, preventDefaultBehaviour, toggleDropdownMenu
+// notes to others, please do not write to the following variables/functions: 
+// navlinks, navdropdowns, defaultBehaviour, toggleDropdownMenu.
 // prevent default behaviour (navigating to "#" or whatever href value is set)
 var navlinks = document.getElementsByClassName("nav-item");
 for (let i=0; i<navlinks.length; i++) {
