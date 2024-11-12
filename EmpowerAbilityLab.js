@@ -11,7 +11,7 @@ knowledgeRunner()
  * ******************************************** NAVIGATION ********************************************
  * Notes: I will clean this area up later. For now, I just need proof it works.
  * This workspace is divided, and in each subsection is a pattern of: [binding event listeners] ... [function that does something]
- * please do not write to the following variables/functions: 
+ * please do not set your variable's/function's names to any of the following: 
  *      navlinks, navdropdowns, defaultBehaviour, toggleDropdownMenu
  */
 
