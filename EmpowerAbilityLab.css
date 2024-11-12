@@ -1,0 +1,30 @@
+nav, nav div, nav div span {
+    color: white;
+}
+
+nav div ul {
+    display: inline-block;
+}
+
+nav div ul li {
+    display: inline-block;
+    padding: 5px 15px;
+    border: 1px solid white;
+}
+
+nav div {
+    display: inline-block;
+}
+
+#nav-toggle {
+    cursor: pointer;
+}
+
+.wb-inv {
+    clip: rect(1px,1px,1px,1px);
+    height: 1px;
+    margin: 0;
+    overflow: hidden;
+    position: absolute;
+    width: 1px;
+}
