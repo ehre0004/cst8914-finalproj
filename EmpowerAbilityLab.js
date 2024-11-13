@@ -81,6 +81,9 @@ function loadContent(page) {
 
 /* ******************************************** NAVIGATION *********************************** */
 
+/**
+ * navlinks contains all the <a> marked by the class "nav-link"
+ */
 var navlinks = document.getElementsByClassName("nav-link");
 for (let i=0; i<navlinks.length; i++) {
     navlinks.item(i).addEventListener("click", defaultBehaviour, false);
@@ -105,7 +108,9 @@ loadContent('home');
 /* ****************************************************************************************** */
 
 /**
- * 
+ * Detect key press from *event paramater (e)*, listen for TAB key, and change to next in global variable (list) `navlinks`.
+ * Use `e.currentTarget.getAttribute('href')` to determine current index compared to list.
+ * Remove and add tabindex="-1" depending on what tabs are active or not.
  * @param {Event} e 
  */
 function changeNavLinkOnKeydown(e) {
