@@ -33,13 +33,13 @@ contents.home = new Content(
     // jumbotron
     `<h1 class="h2" tabindex="-1">Welcome to Empower Ability Labs! </h1>
         <p>Empower Ability Labs is a hub for learning and empathy-building.  We are on a mission to foster understanding and promote inclusive digital experiences for all. We offer a range of services designed to promote accessibility awareness, drive inclusivity, and enhance the user experience. And help you find answers on How do people with disabilities use technology and navigate the digital world? What tools do they employ?</p>
-        <p><a href="#" class="pointer" id="openModal">Meet the Empower Community! </a></p>`,
+        <p><a href="#" class="pointer" id="openModal">Meet the Empower Community! </a></p>`, // TODO: add modal function to this link!
     // content
     `<div class="row">
         <div class="col-md-4">
             <h2 class="h5">Our Approach</h2>
             <p>Empower Ability Labs utilizes a hands-on approach to raise awareness and promote empathy. Our immersive workshops and lab days provide participants with a unique opportunity to step into the shoes of individuals with disabilities and navigate the world from their perspective.</p>
-            <p><a href="#">Learn more</a></p>
+            <p><a href="https://www.google.com/search/howsearchworks/our-approach/">Learn more</a></p>
         </div>
         <div class="col-md-4">
             <h2 class="h5">Services</h2>
@@ -49,12 +49,12 @@ contents.home = new Content(
                 <li>Go beyond WCAG compliance!</li>
                 <li>Inspirational speakers.</li>
             </ul>
-            <p><a href="#">Learn more</a></p>
+            <p><a href="https://www.elevenways.be/en/services">Learn more</a></p>
         </div>
         <div class="col-md-4">
             <h2 class="h5">Testimonials</h2>
             <p>Invite a speaker with disabilities to share their unique journey. This captivating addition to your upcoming event will offer insights that resonate,  inspire, educate, and enrich your team's understanding of inclusion.</p>
-            <p><a href="#">Learn more</a></p>
+            <p><a href="https://dictionary.cambridge.org/us/dictionary/english/testimonial">Learn more</a></p>
         </div>
     </div>`
 );
