@@ -59,14 +59,14 @@ contents.home = new Content(
     </div>`
 );
 
-// TODO: services
+// TODO: services page
 contents.services = new Content(
     // jumbo
     `todo: services`,
     // content
     ``
 );
-// TODO: contact
+// TODO: contact page
 contents.contact = new Content(
     // jumbo
     `todo: schedule a call`,
