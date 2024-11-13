@@ -97,11 +97,19 @@ function defaultBehaviour(e) {
     let page = e.currentTarget.getAttribute('href');
     console.log(page);
     loadContent(page);
-    // TODO: make tabbing behaviour - add keyboard functionality (listen for keydown) - remove attribute tabindex for the active tab
     // TODO: lastly, set focus to the first header in the content: the h1 in the 'jumbotron'. this is for screen reader accessibility
 }
 
 loadContent('home');
 
 /* ****************************************************************************************** */
+
+/**
+ * 
+ * @param {Event} e 
+ */
+function changeNavLinkOnKeydown(e) {
+    // TODO: make tabbing behaviour - add keyboard functionality (listen for keydown) - remove attribute tabindex for the active tab
+}
+
 /* ********************************** END NAVIGATION **************************************** */
