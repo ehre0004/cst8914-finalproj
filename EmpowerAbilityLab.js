@@ -30,24 +30,24 @@ var contents = {
 // contents of 'home' page
 contents.home = new Content(
     // jumbotron
-    '<h1 id="a1" class="h2">Welcome to Empower Ability Labs! </h1>'
-        + '<p>Empower Ability Labs is a hub for learning and empathy-building.  We are on a mission to foster understanding and promote inclusive digital experiences for all. We offer a range of services designed to promote accessibility awareness, drive inclusivity, and enhance the user experience. And help you find answers on How do people with disabilities use technology and navigate the digital world? What tools do they employ?</p>'
-        + '<p><a class="pointer" id="openModal">Meet the Empower Community! </a></p>',
+    `<h1 id="a1" class="h2">Welcome to Empower Ability Labs! </h1>'
+        <p>Empower Ability Labs is a hub for learning and empathy-building.  We are on a mission to foster understanding and promote inclusive digital experiences for all. We offer a range of services designed to promote accessibility awareness, drive inclusivity, and enhance the user experience. And help you find answers on How do people with disabilities use technology and navigate the digital world? What tools do they employ?</p>
+        <p><a class="pointer" id="openModal">Meet the Empower Community! </a></p>`,
     // content
-        '<div class="row">'
-        +'<div class="col-md-4">'
-            +'<h2 class="h5">Our Approach</h2>'
-            +'<p>Empower Ability Labs utilizes a hands-on approach to raise awareness and promote empathy. Our immersive workshops and lab days provide participants with a unique opportunity to step into the shoes of individuals with disabilities and navigate the </p>'
-        +'</div>'
-        +'<div class="col-md-4">'
-            +'<h2 class="h5">Services</h2>'
-            +'<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo. </p>'
-        +'</div>'
-        +'<div class="col-md-4">'
-            +'<h2 class="h5">Testimonials</h2>'
-            +'<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo. </p>'
-        +'</div>'
-    +'</div>'
+    `<div class="row">'
+        <div class="col-md-4">
+            <h2 class="h5">Our Approach</h2>
+            <p>Empower Ability Labs utilizes a hands-on approach to raise awareness and promote empathy. Our immersive workshops and lab days provide participants with a unique opportunity to step into the shoes of individuals with disabilities and navigate the </p>
+        </div>
+        <div class="col-md-4">
+            <h2 class="h5">Services</h2>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo. </p>
+        </div>
+        <div class="col-md-4">
+            <h2 class="h5">Testimonials</h2>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo. </p>
+        </div>
+    </div>`
 );
 
 /**
