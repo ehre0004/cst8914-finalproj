@@ -6,30 +6,61 @@ function knowledgeRunner(){
 knowledgeRunner()
 
 
-
-/* ************************************** Rae Ehret's Workspace ***************************************
- * ******************************************** NAVIGATION ********************************************
- * Notes: I will clean this area up later. For now, I just need proof it works.
- * This workspace is divided, and in each subsection is a pattern of: [binding event listeners] ... [function that does something]
- * please do not set your variable's/function's names to any of the following: 
- *      navlinks, navdropdowns, defaultBehaviour, toggleDropdownMenu, checkIfDropdownsAreOpen, onBackgroundMousedown
- */
-
-/**
- * Returns true if ANY dropdown-menu also has class "show"
- */
-function checkIfDropdownsAreOpen() {
-    let isOpen = false;
-    let dropdowns = document.getElementsByClassName("dropdown-menu");
-    for (let i=0; i<dropdowns.length; i++) {
-        if (dropdowns.item(i).classList.contains("show")) {
-            isOpen = true;
-        }
+/* ************************************** Rae Ehret's Workspace *************************************** */
+class Content {
+    constructor(jumbotron, content) {
+        this.jumbotron = jumbotron;
+        this.content = content;
     }
-    return true;
+    load() {
+        let jumbotronNode = document.getElementById('jumbotron');
+        let contentNode = document.getElementById('content');
+        jumbotronNode.innerHTML = this.jumbotron;
+        contentNode.innerHTML = this.content;
+    }
 }
 
-var navlinks = document.getElementsByClassName("nav-item");
+// navigation object to map pages to
+var contents = {
+    home: new Content('', ''),
+    services: new Content('', ''),
+    contact: new Content('', '')
+};
+
+// contents of 'home' page
+contents.home = new Content(
+    // jumbotron
+    '<h1 id="a1" class="h2">Welcome to Empower Ability Labs! </h1>'
+        + '<p>Empower Ability Labs is a hub for learning and empathy-building.  We are on a mission to foster understanding and promote inclusive digital experiences for all. We offer a range of services designed to promote accessibility awareness, drive inclusivity, and enhance the user experience. And help you find answers on How do people with disabilities use technology and navigate the digital world? What tools do they employ?</p>'
+        + '<p><a class="pointer" id="openModal">Meet the Empower Community! </a></p>',
+    // content
+        '<div class="row">'
+        +'<div class="col-md-4">'
+            +'<h2 class="h5">Our Approach</h2>'
+            +'<p>Empower Ability Labs utilizes a hands-on approach to raise awareness and promote empathy. Our immersive workshops and lab days provide participants with a unique opportunity to step into the shoes of individuals with disabilities and navigate the </p>'
+        +'</div>'
+        +'<div class="col-md-4">'
+            +'<h2 class="h5">Services</h2>'
+            +'<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo. </p>'
+        +'</div>'
+        +'<div class="col-md-4">'
+            +'<h2 class="h5">Testimonials</h2>'
+            +'<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo. </p>'
+        +'</div>'
+    +'</div>'
+);
+
+/**
+ * 
+ * @param {string} page 
+ */
+function loadContent(page) {
+    contents[page].load();
+}
+
+/* ******************************************** NAVIGATION *********************************** */
+
+var navlinks = document.getElementsByClassName("nav-link");
 for (let i=0; i<navlinks.length; i++) {
     navlinks.item(i).addEventListener("click", defaultBehaviour, false);
 }
@@ -41,71 +72,11 @@ for (let i=0; i<navlinks.length; i++) {
  */
 function defaultBehaviour(e) {
     e.preventDefault();
-    // TODO: check if nav-item is also a dropdown-toggle. If so, break out of function by using: return;
     // TODO: programmatically set div id's to something that can be swapped out easily with string replacement in order to retrieve tab panel id's and swap
+    let page = e.currentTarget.getAttribute('href');
+    console.log(page);
+    loadContent(page);
     // TODO: lastly, set focus to the first header in the content: the h1 in the 'jumbotron'. this is for screen reader accessibility
-}
-
-/* ****************************************************************************************** */
-
-// Create function to handle clicking outside
-window.addEventListener('mousedown', onBackgroundMousedown, true);
-/**
- * This code is adapted from the lab 10 assignment.
- * @param {Event} e 
- */
-function onBackgroundMousedown(e) {
-    if (checkIfDropdownsAreOpen()) {
-      let popupsToClose = document.getElementsByClassName("show");
-      for (let i=0; i<popupsToClose.length; i++) {
-        popupsToClose.item(i).classList.remove("show");
-      }
-    }
-}
-
-/* ****************************************************************************************** */
-
-// navigation dropdown behaviour
-// this code navigates the DOM and sets event listeners to the toggles
-// [li] should be class "dropdown", toggling links [a] "dropdown-toggle", and menus of links [ul] "dropdown-menu"
-var navdropdowns = document.getElementsByClassName("dropdown");
-for (let i=0; i<navdropdowns.length; i++) {
-    let toggle, param;
-    let nodes = navdropdowns.item(i).children;
-    for (let y=0; y<nodes.length; y++) {
-        // check for the toggling node amongst the child nodes, and set our toggling node
-        if (nodes.item(y).classList.contains("dropdown-toggle")) {
-            toggle = nodes.item(y);
-            param = toggle; // We don't really need to specify a separate variable for toggle, I just find it more readable this way.
-        }
-    }
-    // bind event listener to toggle
-    toggle.tparam = param; // Alternatively: toggle.tparam = toggle // (passing itself)
-    toggle.addEventListener("click", toggleDropdownMenu, false);
-}
-
-/**
- * Toggles the "show" class on a toggling link's related menu (marked as class "dropdown-menu")
- * @param {Event} e
- */
-function toggleDropdownMenu(e) {
-    // another function does this, but just in case:
-    e.preventDefault();
-    // traverse the dom to find the dropdown-menu node on the same level as the toggle
-    let nodes = e.currentTarget.tparam.parentElement.children;
-    let menu;
-    for (let element of nodes) {
-        if (element.classList.contains("dropdown-menu")) {
-            menu = element;
-        }
-    }
-    // toggle behaviour
-    if (menu.classList.contains("show")) {
-        menu.classList.remove("show");
-    } else {
-        menu.classList.add("show");
-        // TODO: set focus to first index of menu
-    }
 }
 
 /* ****************************************************************************************** */
