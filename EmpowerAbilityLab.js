@@ -7,6 +7,7 @@ knowledgeRunner()
 
 
 /* ************************************** Rae Ehret's Workspace *************************************** */
+/* ********************************************* CONTENT ********************************************** */
 class Content {
     constructor(jumbotron, content) {
         this.jumbotron = jumbotron;
@@ -58,7 +59,7 @@ contents.home = new Content(
 // TODO: services
 contents.services = new Content(
     // jumbo
-    `todo: services'`
+    `todo: services`,
     // content
     ``
 );
