@@ -6,7 +6,6 @@ function knowledgeRunner(){
 knowledgeRunner()
 
 
-/* ************************************** Rae Ehret's Workspace *************************************** */
 /* ********************************************* CONTENT ********************************************** */
 class Content {
     constructor(jumbotron, content) {
@@ -31,7 +30,7 @@ var contents = {
 // contents of 'home' page
 contents.home = new Content(
     // jumbotron
-    `<h1 id="a1" class="h2">Welcome to Empower Ability Labs! </h1>
+    `<h1 class="h2" tabindex="-1">Welcome to Empower Ability Labs! </h1>
         <p>Empower Ability Labs is a hub for learning and empathy-building.  We are on a mission to foster understanding and promote inclusive digital experiences for all. We offer a range of services designed to promote accessibility awareness, drive inclusivity, and enhance the user experience. And help you find answers on How do people with disabilities use technology and navigate the digital world? What tools do they employ?</p>
         <p><a href="#" class="pointer" id="openModal">Meet the Empower Community! </a></p>`,
     // content
@@ -87,6 +86,7 @@ function loadContent(page) {
 var navlinks = document.getElementsByClassName("nav-link");
 for (let i=0; i<navlinks.length; i++) {
     navlinks.item(i).addEventListener("click", defaultBehaviour, false);
+    navlinks.item(i).addEventListener("keyup", changeNavLinkOnKeyup, false);
 }
 
 /**
@@ -98,23 +98,53 @@ function defaultBehaviour(e) {
     e.preventDefault();
     // TODO: programmatically set div id's to something that can be swapped out easily with string replacement in order to retrieve tab panel id's and swap
     let page = e.currentTarget.getAttribute('href');
-    console.log(page);
     loadContent(page);
+    findH1AndFocus();
     // TODO: lastly, set focus to the first header in the content: the h1 in the 'jumbotron'. this is for screen reader accessibility
 }
 
-loadContent('home');
-
-/* ****************************************************************************************** */
+/**
+ * 
+ * @param {HTMLCollectionOf} list 
+ * @param {Element} target
+ */
+function getIndexOfHTMLCollectionByAttribute(list, target, attributeToCheck) {
+    for (let i = 0; i < list.length; i++) {
+        if (list.item(i).getAttribute(attributeToCheck) == target.getAttribute(attributeToCheck)) {
+            return i;
+        }
+    }
+}
 
 /**
- * Detect key press from *event paramater (e)*, listen for TAB key, and change to next in global variable (list) `navlinks`.
+ * collects all <h1> tags and makes the first in the list focusable.
+ */
+function findH1AndFocus() {
+    let h1s = document.getElementsByTagName("h1");
+    console.log(h1s + " length " + h1s.length);
+    if (h1s != null && h1s.length > 0) {
+        h1s.item(0).focus();
+    }
+}
+
+/**
+ * Detect key press from *event paramater (e)*, listen for left/right keys, and change to previous/next in global variable (list) `navlinks`.
  * Use `e.currentTarget.getAttribute('href')` to determine current index compared to list.
  * Remove and add tabindex="-1" depending on what tabs are active or not.
  * @param {Event} e 
  */
-function changeNavLinkOnKeydown(e) {
-    // TODO: make tabbing behaviour - add keyboard functionality (listen for keydown) - remove attribute tabindex for the active tab
+function changeNavLinkOnKeyup(e) {
+    // TODO: add keyboard functionality (listen for keydown) - remove attribute tabindex for the active tab
+    let index = getIndexOfHTMLCollectionByAttribute(navlinks, e.target, 'href');
+    if (e.keyCode == 39) { // right key
+		navlinks[(index + 1) % 3].focus();
+	} else if (e.keyCode == 37) { // left key
+		navlinks[((index - 1) < 0 ? 2 : index - 1)].focus();
+	}
 }
+
+/* ****************************************************************************************** */
+
+loadContent('home');
 
 /* ********************************** END NAVIGATION **************************************** */

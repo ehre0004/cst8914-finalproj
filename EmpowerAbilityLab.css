@@ -6,3 +6,7 @@
     position: absolute;
     width: 1px;
 }
+
+*[tabindex]:focus {
+    outline: 2px blue solid !important;
+}
