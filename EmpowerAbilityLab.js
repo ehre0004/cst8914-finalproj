@@ -34,7 +34,7 @@ contents.home = new Content(
         <p>Empower Ability Labs is a hub for learning and empathy-building.  We are on a mission to foster understanding and promote inclusive digital experiences for all. We offer a range of services designed to promote accessibility awareness, drive inclusivity, and enhance the user experience. And help you find answers on How do people with disabilities use technology and navigate the digital world? What tools do they employ?</p>
         <p><a href="#" class="pointer" id="openModal">Meet the Empower Community! </a></p>`,
     // content
-    `<div class="row">'
+    `<div class="row">
         <div class="col-md-4">
             <h2 class="h5">Our Approach</h2>
             <p>Empower Ability Labs utilizes a hands-on approach to raise awareness and promote empathy. Our immersive workshops and lab days provide participants with a unique opportunity to step into the shoes of individuals with disabilities and navigate the </p>
@@ -50,9 +50,24 @@ contents.home = new Content(
         </div>
         <div class="col-md-4">
             <h2 class="h5">Testimonials</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo. </p>
+            <p>Invite a speaker with disabilities to share their unique journey. This captivating addition to your upcoming event will offer insights that resonate,  inspire, educate, and enrich your team's understanding of inclusion.</p>
         </div>
     </div>`
+);
+
+// TODO: services
+contents.services = new Content(
+    // jumbo
+    'todo: services',
+    // content
+    ''
+);
+// TODO: contact
+contents.contact = new Content(
+    // jumbo
+    'todo: schedule a call',
+    // content
+    ''
 );
 
 /**
@@ -83,6 +98,8 @@ function defaultBehaviour(e) {
     loadContent(page);
     // TODO: lastly, set focus to the first header in the content: the h1 in the 'jumbotron'. this is for screen reader accessibility
 }
+
+loadContent('home');
 
 /* ****************************************************************************************** */
 /* ********************************** END NAVIGATION **************************************** */
