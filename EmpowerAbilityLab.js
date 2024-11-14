@@ -89,8 +89,8 @@ function loadContent(page) {
  */
 var navlinks = document.getElementsByClassName("nav-link");
 for (let i=0; i<navlinks.length; i++) {
-    navlinks.item(i).addEventListener("click", defaultBehaviour, false);
-    navlinks.item(i).addEventListener("keyup", changeNavLinkOnKeyup, false);
+    navlinks.item(i).addEventListener("click", actionOnClick, false);
+    navlinks.item(i).addEventListener("keyup", actionOnKeyUp, false);
 }
 
 /**
@@ -98,13 +98,11 @@ for (let i=0; i<navlinks.length; i++) {
  * NOTE: just expand on this to include tabbing behaviour
  * @param {Event} e 
  */
-function defaultBehaviour(e) {
+function actionOnClick(e) {
     e.preventDefault();
     // TODO: programmatically set div id's to something that can be swapped out easily with string replacement in order to retrieve tab panel id's and swap
     let page = e.currentTarget.getAttribute('href');
     loadContent(page);
-    findH1AndFocus();
-    // TODO: lastly, set focus to the first header in the content: the h1 in the 'jumbotron'. this is for screen reader accessibility
 }
 
 /**
@@ -137,14 +135,16 @@ function findH1AndFocus() {
  * Remove and add tabindex="-1" depending on what tabs are active or not.
  * @param {Event} e 
  */
-function changeNavLinkOnKeyup(e) {
+function actionOnKeyUp(e) {
     // TODO: add keyboard functionality (listen for keydown) - remove attribute tabindex for the active tab
     let index = getIndexOfHTMLCollectionByAttribute(navlinks, e.target, 'href');
     if (e.keyCode == 39) { // right key
 		navlinks[(index + 1) % 3].focus();
 	} else if (e.keyCode == 37) { // left key
 		navlinks[((index - 1) < 0 ? 2 : index - 1)].focus();
-	}
+	} else if (e.keyCode == 13) {
+        findH1AndFocus();
+    }
 }
 
 /* ****************************************************************************************** */
