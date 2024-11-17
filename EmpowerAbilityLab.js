@@ -28,7 +28,7 @@ var contents = {
 };
 
 // contents of 'home' page
-// TODO: finish this page, too!
+// TODO: finish this page, too! i.e. modal
 contents.home = new Content(
     // jumbotron
     `<h1 class="h2" tabindex="-1">Welcome to Empower Ability Labs! </h1>
@@ -95,18 +95,17 @@ for (let i=0; i<navlinks.length; i++) {
 
 /**
  * Prevent default behaviour, i.e. not navigating by href value
- * NOTE: just expand on this to include tabbing behaviour
+ * And tabbing behaviour.
  * @param {Event} e 
  */
 function actionOnClick(e) {
     e.preventDefault();
-    // TODO: programmatically set div id's to something that can be swapped out easily with string replacement in order to retrieve tab panel id's and swap
     let page = e.currentTarget.getAttribute('href');
     loadContent(page);
 }
 
 /**
- * 
+ * This finds the index of the page by checking the 'href' values of the list and the passed element (target)
  * @param {HTMLCollectionOf} list 
  * @param {Element} target
  */
@@ -120,6 +119,8 @@ function getIndexOfHTMLCollectionByAttribute(list, target, attributeToCheck) {
 
 /**
  * collects all <h1> tags and makes the first in the list focusable.
+ * 
+ * **NOTE: h1 needs `tabindex="-1"` added to the html content to be focusable.**
  */
 function findH1AndFocus() {
     let h1s = document.getElementsByTagName("h1");
@@ -130,13 +131,11 @@ function findH1AndFocus() {
 }
 
 /**
- * Detect key press from *event paramater (e)*, listen for left/right keys, and change to previous/next in global variable (list) `navlinks`.
- * Use `e.currentTarget.getAttribute('href')` to determine current index compared to list.
- * Remove and add tabindex="-1" depending on what tabs are active or not.
+ * Detects key presses from *event paramater (e)*, listens for left/right keys, and changes to previous/next in list of global variable `navlinks`.
+ * Use `getIndexOfHTMLCollectionByAttribute` to find the index.
  * @param {Event} e 
  */
 function actionOnKeyUp(e) {
-    // TODO: add keyboard functionality (listen for keydown) - remove attribute tabindex for the active tab
     let index = getIndexOfHTMLCollectionByAttribute(navlinks, e.target, 'href');
     if (e.keyCode == 39) { // right key
 		navlinks[(index + 1) % 3].focus();
