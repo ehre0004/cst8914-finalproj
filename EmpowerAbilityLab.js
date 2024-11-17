@@ -8,7 +8,8 @@ knowledgeRunner()
 
 /* ********************************************* CONTENT ********************************************** */
 class Content {
-    constructor(jumbotron, content) {
+    constructor(title, jumbotron, content) {
+        this.title = title;
         this.jumbotron = jumbotron;
         this.content = content;
     }
@@ -22,14 +23,16 @@ class Content {
 
 // navigation object to map pages to
 var contents = {
-    home: new Content('', ''),
-    services: new Content('', ''),
-    contact: new Content('', '')
+    home: new Content('' ,'', ''),
+    services: new Content('' ,'', ''),
+    contact: new Content('' ,'', '')
 };
 
 // contents of 'home' page
 // TODO: finish this page, too! i.e. modal
 contents.home = new Content(
+    // title
+    `Home`,
     // jumbotron
     `<h1 class="h2" tabindex="-1">Welcome to Empower Ability Labs! </h1>
         <p>Empower Ability Labs is a hub for learning and empathy-building.  We are on a mission to foster understanding and promote inclusive digital experiences for all. We offer a range of services designed to promote accessibility awareness, drive inclusivity, and enhance the user experience. And help you find answers on How do people with disabilities use technology and navigate the digital world? What tools do they employ?</p>
@@ -61,6 +64,8 @@ contents.home = new Content(
 
 // TODO: services page
 contents.services = new Content(
+    // title
+    `Services`,
     // jumbo
     `todo: services`,
     // content
@@ -68,6 +73,8 @@ contents.services = new Content(
 );
 // TODO: contact page
 contents.contact = new Content(
+    // title
+    `Schedule a Call`,
     // jumbo
     `todo: schedule a call`,
     // content
@@ -80,6 +87,7 @@ contents.contact = new Content(
  */
 function loadContent(page) {
     contents[page].load();
+    document.title = contents[page].title+" - Empower Ability Labs";
 }
 
 /* ******************************************** NAVIGATION *********************************** */
