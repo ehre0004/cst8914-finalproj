@@ -33,7 +33,7 @@ contents.home = new Content(
     // jumbotron
     `<h1 class="h2" tabindex="-1">Welcome to Empower Ability Labs! </h1>
         <p>Empower Ability Labs is a hub for learning and empathy-building.  We are on a mission to foster understanding and promote inclusive digital experiences for all. We offer a range of services designed to promote accessibility awareness, drive inclusivity, and enhance the user experience. And help you find answers on How do people with disabilities use technology and navigate the digital world? What tools do they employ?</p>
-        <p><a href="#" class="pointer" onclick="openModal(event)">Meet the Empower Community! </a></p>`, // TODO: add modal function to this link!
+        <p><a href="#" onclick="openModal(event)">Meet the Empower Community! </a></p>`, // TODO: add modal function to this link!
     // content
     `<div class="row">
         <div class="col-md-4">
@@ -95,7 +95,7 @@ for (let i=0; i<navlinks.length; i++) {
 
 /**
  * Prevent default behaviour, i.e. not navigating by href value
- * And tabbing behaviour.
+ * and tabbing behaviour.
  * @param {Event} e 
  */
 function actionOnClick(e) {
