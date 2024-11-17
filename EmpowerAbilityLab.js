@@ -118,7 +118,7 @@ function getIndexOfHTMLCollectionByAttribute(list, target, attributeToCheck) {
 }
 
 /**
- * collects all <h1> tags and makes the first in the list focusable.
+ * collects all `<h1>` tags and makes the first in the list focusable.
  * 
  * **NOTE: h1 needs `tabindex="-1"` added to the html content to be focusable.**
  */
