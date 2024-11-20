@@ -82,7 +82,9 @@ contents.contact = new Content(
       `
        <div class="container">
            <!-- ARIA live region for dynamic alerts -->
-           <div id="alert-region" aria-live="polite" class="alert-region"></div>
+           <div id="alert-region" aria-live="polite" class="alert-region">
+                <!-- Alerts will be dynamically injected here -->
+            </div>
    
            <form id="contact-form" novalidate>
                <!-- Business Name -->
@@ -157,7 +159,7 @@ function loadContent(page) {
 }
 
 
-function setupContactForm() {
+function setupContactForm() {     //TODO: Audio alert on alert close
     const contactForm = document.getElementById('contact-form');
 
     if (contactForm) {
@@ -167,7 +169,8 @@ function setupContactForm() {
             // Clear previous alerts
             const alertRegion = document.getElementById('alert-region');
             alertRegion.innerHTML = '';
-            alertRegion.className = 'alert-region';
+            alertRegion.className = 'alert-region'; // Reset classes
+            alertRegion.removeAttribute('tabindex'); // Remove tabindex if previously set
 
             // Gather form data
             const businessName = document.getElementById('business-name').value.trim();
@@ -182,58 +185,80 @@ function setupContactForm() {
             // Validation logic
             const errors = [];
 
-            // Validate business name
             if (!businessName) {
                 errors.push("Business name is required.");
             }
 
-            // Validate phone number (general format: 10-digit number, with optional dashes or spaces)
-            const phonePattern = /^[\d\s-]{10,15}$/; // Matches 10-15 digits with optional spaces or dashes
+            const phonePattern = /^[\d\s-]{10,15}$/;
             if (!phoneNumber || !phonePattern.test(phoneNumber)) {
                 errors.push("Phone number is required and must be 10-15 digits (e.g., 613-123-1234).");
             }
 
-            // Validate email address
-            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Simple email validation
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!email || !emailPattern.test(email)) {
                 errors.push("A valid email address is required (e.g., name@example.com).");
             }
 
-            // Validate at least one topic is selected
             if (!awareness && !speaker && !usability) {
                 errors.push("You must select at least one topic to talk about.");
             }
 
-            // Validate event details
             if (!eventDetails) {
                 errors.push("Event details are required.");
             }
 
             // Handle validation errors
             if (errors.length > 0) {
-                alertRegion.innerHTML = `
-                    <div class="alert alert-danger" role="alert">
-                        <ul>${errors.map(err => `<li>${err}</li>`).join('')}</ul>
-                    </div>
-                `;
-                alertRegion.classList.add('alert-danger');
+                // Apply alert classes directly to alertRegion
+                alertRegion.className = 'alert alert-danger alert-region';
+                alertRegion.setAttribute('role', 'alert');
+                alertRegion.setAttribute('tabindex', '0'); // Include in tab order
 
-                // Make the alert focusable and set focus
-                alertRegion.setAttribute('tabindex', '-1');
-                alertRegion.focus();
+                // Build the alert content with the message before the close button
+                alertRegion.innerHTML = `
+                    <ul>
+                        ${errors.map(err => `<li>${err}</li>`).join('')}
+                    </ul>
+                    <button type="button" class="close-btn" aria-label="Close alert">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                `;
+
+                // Add event listener to close button
+                const closeButton = alertRegion.querySelector('.close-btn');
+                closeButton.addEventListener('click', () => {
+                    alertRegion.innerHTML = '';
+                    alertRegion.className = 'alert-region'; // Reset classes
+                    alertRegion.removeAttribute('tabindex');
+                });
+
+                // Do not set focus programmatically; let users tab naturally
 
                 return;
             }
 
             // Success message
-            alertRegion.innerHTML = `
-                Thank you for scheduling a call! We will get in touch soon.
-            `;
-            alertRegion.classList.add('alert-success');
+            alertRegion.className = 'alert alert-success alert-region';
+            alertRegion.setAttribute('role', 'alert');
+            alertRegion.setAttribute('tabindex', '0'); // Include in tab order
 
-            // Make the alert focusable and set focus
-            alertRegion.setAttribute('tabindex', '-1');
-            alertRegion.focus();
+            alertRegion.innerHTML = `
+                <p>Thank you for scheduling a call! We will get in touch soon.</p>
+                <button type="button" class="close-btn" aria-label="Close alert">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            `;
+
+            // Add event listener to close button
+            const closeButton = alertRegion.querySelector('.close-btn');
+            closeButton.addEventListener('click', () => {
+                alertRegion.innerHTML = '';
+                alertRegion.className = 'alert-region'; // Reset classes
+                alertRegion.removeAttribute('tabindex');
+            });
+
+            // Optionally, reset the form
+            contactForm.reset();
         });
     }
 }
