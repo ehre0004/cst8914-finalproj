@@ -83,7 +83,7 @@ contents.contact = new Content(
     <!-- ARIA live region for dynamic alerts -->
     <div id="alert-region" aria-live="polite" class="sr-only"></div>
 
-    <form id="contact-form">
+    <form id="contact-form" novalidate>
         <div class="form-group">
             <label for="business-name">Business Name <span aria-hidden="true">*</span>:</label>
             <input type="text" class="form-control" id="business-name" placeholder="Enter your business name" aria-required="true">
@@ -158,6 +158,7 @@ function setupContactForm() {
             // Clear previous alerts
             const alertRegion = document.getElementById('alert-region');
             alertRegion.innerHTML = '';
+            alertRegion.className = 'alert-region';
 
             // Gather form data
             const businessName = document.getElementById('business-name').value.trim();
@@ -170,40 +171,42 @@ function setupContactForm() {
 
             // Validation logic
             const errors = [];
+
+            // Custom validation for required fields
             if (!businessName) {
                 errors.push("Business name is required.");
             }
-            
+
             if (!phoneNumber) {
                 errors.push("Phone number is required.");
             }
-            
-            if (!email) {
-                errors.push("A valid email is required.");
+
+            // Custom email validation
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email || !emailPattern.test(email)) {
+                errors.push("A valid email address is required (e.g., name@example.com).");
             }
-            
+
             if (!awareness && !speaker && !usability) {
                 errors.push("You must select at least one topic to talk about.");
             }
-            
+
             if (!eventDetails) {
                 errors.push("Event details are required.");
             }
 
             // Handle validation errors
             if (errors.length > 0) {
-                // Display errors in alert region
                 alertRegion.innerHTML = `
                     <div class="alert alert-danger" role="alert">
                         <ul>${errors.map(err => `<li>${err}</li>`).join('')}</ul>
                     </div>
                 `;
 
-                // Set focus to the first error
-                document.getElementById(errors[0].includes("Business name") ? 'business-name' :
-                                        errors[0].includes("Phone number") ? 'phone-number' :
-                                        errors[0].includes("email") ? 'email' : 
-                                        'event-details').focus();
+                // Make the alert focusable and set focus
+                alertRegion.setAttribute('tabindex', '-1');
+                alertRegion.focus();
+
                 return;
             }
 
@@ -213,6 +216,11 @@ function setupContactForm() {
                     Thank you for scheduling a call! We will get in touch soon.
                 </div>
             `;
+            alertRegion.classList.add('alert-success');
+
+            // Make the alert focusable and set focus
+            alertRegion.setAttribute('tabindex', '-1');
+            alertRegion.focus();
         });
     }
 }
