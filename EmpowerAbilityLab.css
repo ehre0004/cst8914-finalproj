@@ -31,3 +31,72 @@
     border: 1px solid #f5c6cb;
     display: block;
 }
+
+/* Toggle Switch Styles */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+.toggle-switch input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 50px;
+    height: 24px;
+    margin: 0;
+    cursor: pointer;
+}
+
+.toggle-switch label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50px;
+    height: 24px;
+    background-color: #ccc;
+    border-radius: 34px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.toggle-switch label::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+
+.toggle-switch input[type="checkbox"]:checked + label {
+    background-color: #28a745; /* Green when checked */
+}
+
+.toggle-switch input[type="checkbox"]:checked + label::after {
+    transform: translateX(26px); /* Move the knob */
+}
+
+.toggle-switch input[type="checkbox"]:focus + label {
+    box-shadow: 0 0 0 2px rgba(40, 167, 69, 0.25); /* Focus ring */
+}
+
+/* Ensure proper alignment with the text label */
+.form-group label[for="email-updates"] {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+/* Focus indicator for the toggle switch */
+.toggle-switch input[type="checkbox"]:focus + label {
+    outline: 2px solid #28a745; /* Green outline */
+    outline-offset: 2px; /* Space between the outline and element */
+    box-shadow: 0 0 5px 2px rgba(40, 167, 69, 0.5); /* Green glow effect */
+}
