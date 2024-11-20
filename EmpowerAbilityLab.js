@@ -80,45 +80,56 @@ contents.contact = new Content(
        <p><p>At Empower Ability Labs, we’re excited to connect with you! Whether you’re looking to enhance accessibility, invite an inspiring speaker, or explore usability testing, we’re here to help. Fill out the form below to schedule a call and take the first step toward creating inclusive digital experiences.</p>`, //TODO: Alerts
    // content
    `<div class="container">
-       <form id="contact-form">
-           <div class="form-group">
-               <label for="business-name">Business Name:</label>
-               <input type="text" class="form-control" id="business-name" placeholder="Enter your business name">
-           </div>
-           <div class="form-group">
-               <label for="phone-number">Phone Number (613-123-1234):</label>
-               <input type="tel" class="form-control" id="phone-number" placeholder="Enter your phone number">
-           </div>
-           <div class="form-group">
-               <label for="email">Email (required):</label>
-               <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
-           </div>
-           <div class="form-group">
-               <label>What would you like to talk about?</label>
-               <div class="form-check">
-                   <input type="checkbox" class="form-check-input" id="awareness">
-                   <label class="form-check-label" for="awareness">Awareness lab days and workshops</label>
-               </div>
-               <div class="form-check">
-                   <input type="checkbox" class="form-check-input" id="speaker">
-                   <label class="form-check-label" for="speaker">Invite a speaker with disabilities to your event</label>
-               </div>
-               <div class="form-check">
-                   <input type="checkbox" class="form-check-input" id="usability">
-                   <label class="form-check-label" for="usability">Usability testing</label>
-               </div>
-           </div>
-           <div class="form-group">
-               <label for="event-details">Tell us about your event:</label>
-               <textarea class="form-control" id="event-details" rows="4" placeholder="Provide details about your event"></textarea>
-           </div>
-           <div class="form-group">
-               <label for="email-updates">Receive emails about updates and services:</label>
-               <input type="checkbox" id="email-updates" class="form-check-input">
-           </div>
-           <button type="submit" class="btn btn-primary">Schedule a Call</button>
-       </form>
-   </div>`
+    <!-- ARIA live region for dynamic alerts -->
+    <div id="alert-region" aria-live="polite" class="sr-only"></div>
+
+    <form id="contact-form">
+        <div class="form-group">
+            <label for="business-name">Business Name <span aria-hidden="true">*</span>:</label>
+            <input type="text" class="form-control" id="business-name" placeholder="Enter your business name" aria-required="true">
+        </div>
+
+        <div class="form-group">
+            <label for="phone-number">Phone Number <span aria-hidden="true">*</span>:</label>
+            <input type="tel" class="form-control" id="phone-number" placeholder="Enter your phone number" aria-required="true">
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email <span aria-hidden="true">*</span>:</label>
+            <input type="email" class="form-control" id="email" placeholder="Enter your email" aria-required="true">
+        </div>
+
+        <div class="form-group">
+            <label>What would you like to talk about? <span aria-hidden="true">*</span></label>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="awareness">
+                <label class="form-check-label" for="awareness">Awareness lab days and workshops</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="speaker">
+                <label class="form-check-label" for="speaker">Invite a speaker with disabilities to your event</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="usability">
+                <label class="form-check-label" for="usability">Usability testing</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="event-details">Tell us about your event <span aria-hidden="true">*</span>:</label>
+            <textarea class="form-control" id="event-details" rows="4" placeholder="Provide details about your event" aria-required="true"></textarea>
+        </div>
+
+        <div class="form-group">
+            <div class="form-check">
+                <input type="checkbox" id="email-updates" class="form-check-input">
+                <label for="email-updates">Receive emails about updates and services</label>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Schedule a Call</button>
+    </form>
+</div>`
 
 );
 
@@ -144,6 +155,10 @@ function setupContactForm() {
         contactForm.addEventListener('submit', function (e) {
             e.preventDefault();
 
+            // Clear previous alerts
+            const alertRegion = document.getElementById('alert-region');
+            alertRegion.innerHTML = '';
+
             // Gather form data
             const businessName = document.getElementById('business-name').value.trim();
             const phoneNumber = document.getElementById('phone-number').value.trim();
@@ -155,44 +170,49 @@ function setupContactForm() {
 
             // Validation logic
             const errors = [];
-
             if (!businessName) {
                 errors.push("Business name is required.");
             }
-
-            const phonePattern = /^\d{3}-\d{3}-\d{4}$/; // Matches 613-123-1234 format
-            if (!phoneNumber || !phonePattern.test(phoneNumber)) {
-                errors.push("Phone number is required and must match the format 613-123-1234.");
+            
+            if (!phoneNumber) {
+                errors.push("Phone number is required.");
             }
-
-            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Simple email validation
-            if (!email || !emailPattern.test(email)) {
+            
+            if (!email) {
                 errors.push("A valid email is required.");
             }
-
+            
             if (!awareness && !speaker && !usability) {
                 errors.push("You must select at least one topic to talk about.");
             }
-
+            
             if (!eventDetails) {
                 errors.push("Event details are required.");
             }
 
             // Handle validation errors
             if (errors.length > 0) {
-                alert("Please fix the following errors:\n\n" + errors.join("\n"));
+                // Display errors in alert region
+                alertRegion.innerHTML = `
+                    <div class="alert alert-danger" role="alert">
+                        <ul>${errors.map(err => `<li>${err}</li>`).join('')}</ul>
+                    </div>
+                `;
+
+                // Set focus to the first error
+                document.getElementById(errors[0].includes("Business name") ? 'business-name' :
+                                        errors[0].includes("Phone number") ? 'phone-number' :
+                                        errors[0].includes("email") ? 'email' : 
+                                        'event-details').focus();
                 return;
             }
 
             // Success message
-            alert(`
-                Thank you for scheduling a call!
-                Business Name: ${businessName}
-                Phone Number: ${phoneNumber}
-                Email: ${email}
-                Topics: ${awareness ? "Awareness lab days, " : ""}${speaker ? "Speaker event, " : ""}${usability ? "Usability testing" : ""}
-                Event Details: ${eventDetails}
-            `);
+            alertRegion.innerHTML = `
+                <div class="alert alert-success" role="alert">
+                    Thank you for scheduling a call! We will get in touch soon.
+                </div>
+            `;
         });
     }
 }
