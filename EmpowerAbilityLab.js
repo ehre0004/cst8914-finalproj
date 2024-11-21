@@ -71,7 +71,7 @@ contents.services = new Content(
     // content
     ``
 );
-// TODO: contact page
+// contact page
 contents.contact = new Content(
       // title
       `Schedule a Call`,
@@ -329,6 +329,7 @@ function actionOnKeyUp(e) {
 
 /* ****************************************************************************************** */
 
+// TODO: add history push state
 loadContent('home');
 
 /* ********************************** END NAVIGATION **************************************** */
