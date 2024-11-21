@@ -68,7 +68,7 @@
 }
 
 /* Ensure the alert region has relative positioning */
-.alert {
+.alert-region {
     position: relative;
     padding-right: 2.5rem; /* Add space for the close button */
 }

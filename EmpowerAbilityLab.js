@@ -84,7 +84,8 @@ contents.contact = new Content(
            <!-- ARIA live region for dynamic alerts -->
                <!-- Live Region for Screen Readers -->
             <div id="screenreader-notification" aria-live="polite" class="sr-only"></div>
-           <div id="alert-region" aria-live="polite" class="alert-region">
+            <!-- We don't need aria-live here because we are moving focus to the alert. with aria-live, it gets read twice -->
+           <div id="alert-region" class="alert-region">
                 <!-- Alerts will be dynamically injected here -->
             </div>
    
@@ -212,12 +213,12 @@ function setupContactForm() {
             // Handle validation errors
             if (errors.length > 0) {
                 // Apply alert classes directly to alertRegion
-                alertRegion.className = 'alert alert-danger alert-region';
-                alertRegion.setAttribute('role', 'alert');
+                alertRegion.className = 'alert-danger alert-region';
                 alertRegion.setAttribute('tabindex', '0'); // Include in tab order
 
                 // Build the alert content with the message before the close button
                 alertRegion.innerHTML = `
+                    <p class="sr-only">Alert Dialogue<p>
                     <ul>
                         ${errors.map(err => `<li>${err}</li>`).join('')}
                     </ul>
@@ -244,11 +245,11 @@ function setupContactForm() {
             }
 
             // Success message
-            alertRegion.className = 'alert alert-success alert-region';
-            alertRegion.setAttribute('role', 'alert');
+            alertRegion.className = 'alert-success alert-region';
             alertRegion.setAttribute('tabindex', '0'); // Include in tab order
 
             alertRegion.innerHTML = `
+                <p class="sr-only>Alert Dialogue<p>
                 <p>Thank you for scheduling a call! We will get in touch soon.</p>
                 <button type="button" class="close-btn" aria-label="Close alert">
                     <span aria-hidden="true">&times;</span>
