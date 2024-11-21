@@ -83,7 +83,7 @@ contents.contact = new Content(
        <div class="container">
            <!-- ARIA live region for dynamic alerts -->
                <!-- Live Region for Screen Readers -->
-            <div id="screenreader-notification" aria-live="polite" class="sr-only"></div>
+            <div id="screenreader-notification" aria-live="assertive" class="sr-only"></div>
             <!-- We don't need aria-live here because we are moving focus to the alert. with aria-live, it gets read twice -->
            <div id="alert-region" class="alert-region">
                 <!-- Alerts will be dynamically injected here -->
@@ -249,7 +249,7 @@ function setupContactForm() {
             alertRegion.setAttribute('tabindex', '0'); // Include in tab order
 
             alertRegion.innerHTML = `
-                <p class="sr-only>Alert Dialogue<p>
+                <p class="sr-only">Alert Dialogue<p>
                 <p>Thank you for scheduling a call! We will get in touch soon.</p>
                 <button type="button" class="close-btn" aria-label="Close alert">
                     <span aria-hidden="true">&times;</span>
