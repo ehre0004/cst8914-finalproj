@@ -82,6 +82,8 @@ contents.contact = new Content(
       `
        <div class="container">
            <!-- ARIA live region for dynamic alerts -->
+               <!-- Live Region for Screen Readers -->
+            <div id="screenreader-notification" aria-live="polite" class="sr-only"></div>
            <div id="alert-region" aria-live="polite" class="alert-region">
                 <!-- Alerts will be dynamically injected here -->
             </div>
@@ -159,7 +161,7 @@ function loadContent(page) {
 }
 
 
-function setupContactForm() {     //TODO: Audio alert on alert close
+function setupContactForm() {
     const contactForm = document.getElementById('contact-form');
 
     if (contactForm) {
@@ -168,9 +170,9 @@ function setupContactForm() {     //TODO: Audio alert on alert close
 
             // Clear previous alerts
             const alertRegion = document.getElementById('alert-region');
+            const screenReaderNotification = document.getElementById('screenreader-notification');
             alertRegion.innerHTML = '';
             alertRegion.className = 'alert-region'; // Reset classes
-            alertRegion.removeAttribute('tabindex'); // Remove tabindex if previously set
 
             // Gather form data
             const businessName = document.getElementById('business-name').value.trim();
@@ -230,9 +232,13 @@ function setupContactForm() {     //TODO: Audio alert on alert close
                     alertRegion.innerHTML = '';
                     alertRegion.className = 'alert-region'; // Reset classes
                     alertRegion.removeAttribute('tabindex');
+
+                    // Notify screen reader users
+                    screenReaderNotification.textContent = "The alert has been closed.";
                 });
 
-                // Do not set focus programmatically; let users tab naturally
+                // Optionally, set focus to the alert region
+                alertRegion.focus();
 
                 return;
             }
@@ -255,10 +261,13 @@ function setupContactForm() {     //TODO: Audio alert on alert close
                 alertRegion.innerHTML = '';
                 alertRegion.className = 'alert-region'; // Reset classes
                 alertRegion.removeAttribute('tabindex');
+
+                // Notify screen reader users
+                screenReaderNotification.textContent = "The alert has been closed.";
             });
 
-            // Optionally, reset the form
-            contactForm.reset();
+            // Optionally, set focus to the alert region
+            alertRegion.focus();
         });
     }
 }
