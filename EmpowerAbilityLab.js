@@ -316,6 +316,211 @@ function updateLiveRegion(liveRegion, message) {
     }, 100);
 }
 
+
+/*   **************************************** START MODAL CODE *************************************** */
+
+let focusableElements = [];
+let modalElement = null;
+let lastFocusedElement = null;
+
+/**
+ * Function to close the modal
+ */
+function closeModal() {
+    console.log('closeModal called'); // Debugging statement
+
+    // Remove modal and overlay from the DOM
+    const overlay = document.querySelector('.modal-overlay');
+    const modal = document.querySelector('.modal-dialog');
+
+    if (overlay) overlay.remove();
+    if (modal) modal.remove();
+
+    // Remove event listeners
+    document.removeEventListener('keydown', trapTabKey);
+    document.removeEventListener('focusin', maintainFocus);
+
+    // Restore background scrolling
+    document.body.style.overflow = '';
+
+    // Return focus to the last focused element
+    if (lastFocusedElement) {
+        lastFocusedElement.focus();
+    }
+
+    // Reset modal references
+    modalElement = null;
+    focusableElements = [];
+}
+
+/**
+ * Function to open the modal
+ */
+function openModal(event) {
+    event.preventDefault();
+
+    // Save the element that had focus
+    lastFocusedElement = document.activeElement;
+
+    // Create the modal overlay
+    const overlay = document.createElement('div');
+    overlay.className = 'modal-overlay';
+    overlay.setAttribute('role', 'presentation');
+    overlay.setAttribute('aria-hidden', 'true');
+
+    // Create the modal container
+    const modal = document.createElement('div');
+    modal.className = 'modal-dialog';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-label', 'Meet the Empower Community dialog');
+    modal.setAttribute('tabindex', '-1'); // Make modal focusable
+
+    // Create modal content container
+    const modalContent = document.createElement('div');
+    modalContent.className = 'modal-content';
+
+    // Create modal header
+    const modalHeader = document.createElement('div');
+    modalHeader.className = 'modal-header';
+
+    const modalTitle = document.createElement('h2');
+    modalTitle.textContent = 'Meet the Empower Community';
+    modalTitle.setAttribute('aria-hidden', 'true'); // Hide heading from screen readers
+
+    modalHeader.appendChild(modalTitle);
+
+    // Create modal body
+    const modalBody = document.createElement('div');
+    modalBody.className = 'modal-body';
+
+    const modalDescription = document.createElement('p');
+    modalDescription.textContent =
+        'We get "aha!" moments from product managers who try our services for the first time. We have hosted lab days, workshops, and usability testing services for organizations like:';
+
+    const orgList = document.createElement('ul');
+    const orgs = [
+        'McGill University',
+        'Walmart.ca',
+        'Apple.ca',
+        'Google.ca',
+        'Government of Canada',
+    ];
+
+    orgs.forEach((org) => {
+        const li = document.createElement('li');
+        li.textContent = org;
+        orgList.appendChild(li);
+    });
+
+    modalBody.appendChild(modalDescription);
+    modalBody.appendChild(orgList);
+
+    // Create modal footer
+    const modalFooter = document.createElement('div');
+    modalFooter.className = 'modal-footer';
+
+    const closeButton = document.createElement('button');
+    closeButton.type = 'button';
+    closeButton.className = 'close-button';
+    closeButton.textContent = 'Close';
+
+    // Set accessible name for the close button
+    closeButton.setAttribute('aria-label', 'Close');
+
+    // Attach event listener to close button
+    closeButton.addEventListener('click', closeModal);
+
+    modalFooter.appendChild(closeButton);
+
+    // Assemble modal content
+    modalContent.appendChild(modalHeader);
+    modalContent.appendChild(modalBody);
+    modalContent.appendChild(modalFooter);
+
+    // Append modal content to modal dialog
+    modal.appendChild(modalContent);
+
+    // Append modal and overlay to the body
+    document.body.appendChild(overlay);
+    document.body.appendChild(modal);
+
+    // Save reference to the modal element
+    modalElement = modal;
+
+    // Collect all focusable elements inside the modal (excluding close button)
+    focusableElements = Array.from(
+        modal.querySelectorAll(
+            'button:not([disabled]):not(.close-button), a[href], input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        )
+    );
+
+    // Add focus trap event listeners
+    document.addEventListener('keydown', trapTabKey);
+    document.addEventListener('focusin', maintainFocus);
+
+    // Prevent background scrolling
+    document.body.style.overflow = 'hidden';
+
+    // Focus the modal dialog container
+    modal.focus();
+}
+
+/**
+ * Function to trap focus within the modal
+ */
+function trapTabKey(event) {
+    if (!modalElement) return;
+
+    const focusable = Array.from(
+        modalElement.querySelectorAll(
+            'button:not([disabled]), a[href], input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        )
+    );
+
+    if (focusable.length === 0) {
+        event.preventDefault();
+        modalElement.focus();
+        return;
+    }
+
+    const firstElement = focusable[0];
+    const lastElement = focusable[focusable.length - 1];
+
+    if (event.key === 'Tab' || event.keyCode === 9) {
+        if (event.shiftKey) {
+            // Backward tab
+            if (
+                document.activeElement === firstElement ||
+                document.activeElement === modalElement
+            ) {
+                event.preventDefault();
+                lastElement.focus();
+            }
+        } else {
+            // Forward tab
+            if (document.activeElement === lastElement) {
+                event.preventDefault();
+                firstElement.focus();
+            }
+        }
+    } else if (event.key === 'Escape' || event.keyCode === 27) {
+        closeModal();
+    }
+}
+
+/**
+ * Function to maintain focus within the modal
+ */
+function maintainFocus(event) {
+    if (modalElement && !modalElement.contains(event.target)) {
+        event.stopPropagation();
+        modalElement.focus();
+    }
+}
+
+
+// **************************************** END MODAL CODE ****************************************
 /* ******************************************** NAVIGATION *********************************** */
 
 /**
