@@ -1,0 +1,236 @@
+.wb-inv {
+    clip: rect(1px,1px,1px,1px);
+    height: 1px;
+    margin: 0;
+    overflow: hidden;
+    position: absolute;
+    width: 1px;
+}
+
+*[tabindex]:focus {
+    outline: 2px blue solid !important;
+}
+
+.alert-region {
+    margin-bottom: 1rem;
+}
+
+.alert {
+    padding: 1rem;
+    border-radius: 0.25rem;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+/* Alert Region Focus Style */
+.alert-region:focus {
+    outline: 2px solid #0056b3; /* Blue outline to indicate focus */
+    outline-offset: 2px;
+}
+
+/* Close Button Styles */
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    color: #000;
+    cursor: pointer;
+    line-height: 1;
+    position: absolute;
+    top: 0.5rem;
+    right: 0.75rem;
+}
+
+/* Adjust close button color for different alert types */
+.alert-danger .close-btn {
+    color: #721c24; /* Dark red */
+}
+
+.alert-success .close-btn {
+    color: #155724; /* Dark green */
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: #000;
+    text-decoration: none;
+    opacity: 0.75;
+}
+
+/* Ensure the alert region has relative positioning */
+.alert {
+    position: relative;
+    padding-right: 2.5rem; /* Add space for the close button */
+}
+
+/* Toggle Switch Styles */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+.toggle-switch input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 50px;
+    height: 24px;
+    margin: 0;
+    cursor: pointer;
+}
+
+.toggle-switch label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50px;
+    height: 24px;
+    background-color: #ccc;
+    border-radius: 34px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.toggle-switch label::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+
+.toggle-switch input[type="checkbox"]:checked + label {
+    background-color: #28a745; /* Green when checked */
+}
+
+.toggle-switch input[type="checkbox"]:checked + label::after {
+    transform: translateX(26px); /* Move the knob */
+}
+
+.toggle-switch input[type="checkbox"]:focus + label {
+    box-shadow: 0 0 0 2px rgba(40, 167, 69, 0.25); /* Focus ring */
+}
+
+/* Ensure proper alignment with the text label */
+.form-group label[for="email-updates"] {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+/* ****************************************** MODAL STYLES ****************************************** */
+
+/* Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dimming the background */
+    z-index: 1000;
+    display: block;
+}
+
+/* Modal Dialog */
+.modal-dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%; /* Responsive width */
+    max-width: 500px; /* Maximum width */
+    background: white;
+    border-radius: 16px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    z-index: 1010;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    max-height: 90%; /* Allow modal to adjust to viewport */
+    overflow: auto; /* Enable scrolling if content overflows */
+    box-sizing: border-box; /* Include padding in size */
+}
+/* Modal Header */
+.modal-header {
+    background-color: #333; /* Match the navbar color */
+    padding: 1rem;
+    border-top-left-radius: 16px; /* Rounded corners */
+    border-top-right-radius: 16px;
+    margin-bottom: 1rem; /* Add space for content below header */
+}
+
+/* Modal Body */
+.modal-body {
+    padding: 1rem; /* Add padding around content */
+    padding-bottom: 2rem; /* Add more space at the bottom for close button */
+    font-size: 1rem; /* Adjust font size if needed */
+    line-height: 1.5; /* Improve readability */
+}
+
+/* Close Button */
+.btn-close {
+    padding: 0.5rem 1rem; /* Add padding around the button */
+    font-size: 1rem; /* Adjust button text size */
+    margin-top: 1rem; /* Add space between content and button */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px; /* Rounded corners */
+    background-color: #666; /* Match modal button color */
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* Focus Style for Close Button */
+.btn-close:focus {
+    outline: 2px solid #fff; /* Thick white outline for focus */
+    outline-offset: 4px; /* Make sure focus is visible */
+}
+/* Modal Footer */
+.modal-footer {
+    margin-top: 1rem;
+    text-align: right;
+}
+
+/* Close Button */
+.close-button {
+    padding: 12px 24px; /* Increased padding for better spacing */
+    background-color: #6c757d; /* Grey background */
+    color: #fff; /* White text */
+    border: none;
+    border-radius: 5px; /* Rounded button */
+    cursor: pointer;
+    font-size: 1rem; /* Text size */
+    transition: background-color 0.3s ease;
+}
+
+/* Close Button Hover and Focus */
+.close-button:hover,
+.close-button:focus {
+    background-color: #5a6268; /* Darker grey for hover/focus state */
+    outline: none;
+}
+
+/* Close Button Focus Indicator */
+.close-button:focus {
+    outline: 3px solid #005fcc; /* Thicker blue outline for focus */
+    outline-offset: 2px;
+}
