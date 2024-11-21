@@ -83,7 +83,7 @@ contents.contact = new Content(
        <div class="container">
            <!-- ARIA live region for dynamic alerts -->
                <!-- Live Region for Screen Readers -->
-            <div id="screenreader-notification" aria-live="assertive" class="sr-only"></div>
+            <div id="screenreader-notification" aria-live="polite" class="sr-only"></div>
             <!-- We don't need aria-live here because we are moving focus to the alert. with aria-live, it gets read twice -->
            <div id="alert-region" class="alert-region">
                 <!-- Alerts will be dynamically injected here -->
@@ -210,18 +210,24 @@ function setupContactForm() {
                 errors.push("Event details are required.");
             }
 
-            // Handle validation errors
+                // Handle validation errors
             if (errors.length > 0) {
-                // Apply alert classes directly to alertRegion
-                alertRegion.className = 'alert-danger alert-region';
-                alertRegion.setAttribute('tabindex', '0'); // Include in tab order
+                // Apply alert classes to alertRegion
+                alertRegion.className = 'alert alert-danger alert-region'; // Assuming 'alert' is a base class
 
-                // Build the alert content with the message before the close button
+                // Add ARIA attributes for accessibility
+                alertRegion.setAttribute('aria-labelledby', 'alert-title');
+                alertRegion.setAttribute('aria-describedby', 'alert-description');
+                alertRegion.setAttribute('tabindex', '0'); // Make focusable and include in tab order
+
+                // Build the alert content with proper accessible name and description
                 alertRegion.innerHTML = `
-                    <p class="sr-only">Alert Dialogue<p>
-                    <ul>
-                        ${errors.map(err => `<li>${err}</li>`).join('')}
-                    </ul>
+                    <p id="alert-title" class="sr-only">Error Alert</p>
+                    <div id="alert-description">
+                        <ul>
+                            ${errors.map(err => `<li>${err}</li>`).join('')}
+                        </ul>
+                    </div>
                     <button type="button" class="close-btn" aria-label="Close alert">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -230,47 +236,84 @@ function setupContactForm() {
                 // Add event listener to close button
                 const closeButton = alertRegion.querySelector('.close-btn');
                 closeButton.addEventListener('click', () => {
+                    // Clear the alert content
                     alertRegion.innerHTML = '';
                     alertRegion.className = 'alert-region'; // Reset classes
-                    alertRegion.removeAttribute('tabindex');
+                    alertRegion.removeAttribute('aria-labelledby');
+                    alertRegion.removeAttribute('aria-describedby');
+                    alertRegion.removeAttribute('tabindex'); // Remove tabindex
 
-                    // Notify screen reader users
-                    screenReaderNotification.textContent = "The alert has been closed.";
+                    // Update the live region with a unique message without exposing the timestamp
+                    updateLiveRegion(screenReaderNotification, "The alert has been closed.");
                 });
 
-                // Optionally, set focus to the alert region
+                // Set focus to the alert region to make it accessible via keyboard and screen readers
                 alertRegion.focus();
+
+                // Update the live region to announce the alert with a hidden timestamp
+                updateLiveRegion(screenReaderNotification, "");
 
                 return;
             }
 
-            // Success message
-            alertRegion.className = 'alert-success alert-region';
-            alertRegion.setAttribute('tabindex', '0'); // Include in tab order
+            // Success message handling
+            alertRegion.className = 'alert alert-success alert-region'; // Assuming 'alert' is a base class
+
+            // Add ARIA attributes for accessibility
+            alertRegion.setAttribute('aria-labelledby', 'alert-title');
+            alertRegion.setAttribute('aria-describedby', 'alert-description');
+            alertRegion.setAttribute('tabindex', '0'); // Make focusable and include in tab order
 
             alertRegion.innerHTML = `
-                <p class="sr-only">Alert Dialogue<p>
-                <p>Thank you for scheduling a call! We will get in touch soon.</p>
+                <p id="alert-title" class="sr-only">Success Alert</p>
+                <div id="alert-description">
+                    <p>Thank you for scheduling a call! We will get in touch soon.</p>
+                </div>
                 <button type="button" class="close-btn" aria-label="Close alert">
                     <span aria-hidden="true">&times;</span>
                 </button>
             `;
 
-            // Add event listener to close button
-            const closeButton = alertRegion.querySelector('.close-btn');
-            closeButton.addEventListener('click', () => {
+            const closeButtonSuccess = alertRegion.querySelector('.close-btn');
+            closeButtonSuccess.addEventListener('click', () => {
+                // Clear the alert content
                 alertRegion.innerHTML = '';
                 alertRegion.className = 'alert-region'; // Reset classes
-                alertRegion.removeAttribute('tabindex');
+                alertRegion.removeAttribute('aria-labelledby');
+                alertRegion.removeAttribute('aria-describedby');
+                alertRegion.removeAttribute('tabindex'); // Remove tabindex
 
-                // Notify screen reader users
-                screenReaderNotification.textContent = "The alert has been closed.";
+                // Update the live region with a unique message without exposing the timestamp
+                updateLiveRegion(screenReaderNotification, "The alert has been closed.");
             });
 
-            // Optionally, set focus to the alert region
+            // Set focus to the alert region to make it accessible via keyboard and screen readers
             alertRegion.focus();
+
+            // Update the live region to announce the alert with a hidden timestamp
+            updateLiveRegion(screenreaderNotification, "");
+
         });
     }
+}
+    
+
+/**
+ * Updates the live region to ensure screen readers announce the content.
+ * Appends a timestamp within an aria-hidden span to make each message unique without being read aloud.
+ * 
+ * @param {HTMLElement} liveRegion - The live region element.
+ * @param {string} message - The message to announce.
+ */
+function updateLiveRegion(liveRegion, message) {
+    // Clear previous content
+    liveRegion.innerHTML = '';
+
+    // Use a timeout to ensure the screen reader registers the change
+    setTimeout(() => {
+        // Append the message with a unique identifier that is hidden from screen readers
+        liveRegion.innerHTML = `${message} <span aria-hidden="true">${new Date().getTime()}</span>`;
+    }, 100);
 }
 
 /* ******************************************** NAVIGATION *********************************** */
