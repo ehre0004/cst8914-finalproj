@@ -222,7 +222,7 @@ function setupContactForm() {
 
                 // Build the alert content with proper accessible name and description
                 alertRegion.innerHTML = `
-                    <p id="alert-title" class="sr-only">Error Alert</p>
+                    <p id="alert-title" class="sr-only">Error Alert.</p>
                     <div id="alert-description">
                         <ul>
                             ${errors.map(err => `<li>${err}</li>`).join('')}
@@ -265,7 +265,7 @@ function setupContactForm() {
             alertRegion.setAttribute('tabindex', '0'); // Make focusable and include in tab order
 
             alertRegion.innerHTML = `
-                <p id="alert-title" class="sr-only">Success Alert</p>
+                <p id="alert-title" class="sr-only">Success Alert.</p>
                 <div id="alert-description">
                     <p>Thank you for scheduling a call! We will get in touch soon.</p>
                 </div>
