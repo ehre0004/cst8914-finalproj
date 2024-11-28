@@ -62,47 +62,33 @@ contents.home = new Content(
     </div>`
 );
 
-// TODO: services page
 contents.services = new Content(
     // title
     `Services`,
     // jumbo
-    `      <div class="content1">
-        <div id="content1" class="container">
-          <!-- Your jumbotron content should not be in this container! See the EmpowerAbilityLab.js and search for the TODO's e.g., contents.home / contents.services / contents.contact -->
+    `   <section id="content1" class="container">
           <h1 class="h1">Welcome to Empower Ability Labs Services!</h1>
           <p>Dedicated space or programs designed to cultivate empathy and understanding among individuals towards the challenges faced by people with disabilities in using technology and interacting with various environments.</p>
           <img id="thumbsEmoji" src="images/services.png" alt = ""> 
-        </div>
-      </div>
+        </section>
 
 
-      <div class="content2">
-        <div id="content2" class="container">
-          <!-- Your jumbotron content should not be in this container! See the EmpowerAbilityLab.js and search for the TODO's e.g., contents.home / contents.services / contents.contact -->
+        <section id="content2" class="container">
           <h2 class="h2">Empathy Lab days and workshops</h2>
           <p>The lab days and workshops typically provide hands-on experiences, simulations, and interactions with assistive technologies, tools, and scenarios that replicate the obstacles individuals with disabilities encounter daily.</p>
-        </div>
-      </div>
+        </section>
 
 
-      <div class="content3">
-        <div id="content3" class="container">
-          <!-- Your jumbotron content should not be in this container! See the EmpowerAbilityLab.js and search for the TODO's e.g., contents.home / contents.services / contents.contact -->
+        <section id="content3" class="container">
           <h2 class="header3">Inspirational speakers</h2>
           <p>Invite a speaker with disabilities to take share their unique journey. This captivating addition to your upcoming event will offer insights that resonate, inspire, educate, and enrich your team collective understanding of inclusion.</p>
-        </div>
-      </div>
+        </section>
 
 
-      <div class="content4">
-        <div id="content4" class="container">
-          <!-- Your jumbotron content should not be in this container! See the EmpowerAbilityLab.js and search for the TODO's e.g., contents.home / contents.services / contents.contact -->
+        <section id="content4" class="container">
           <h2 class="header4">Usability testing</h2>
           <p>Go beyond WCAG! Involve individuals with disabilities in usability testing to gather valuable insights for refining product strategy and identifying accessibility concerns at an early stage when solutions are more feasible and cost-effective. You have access to a diverse community of people with disabilities, who use various assistive technologies. With technical expertise ranging from novice to expert, our community can support your product lifecycle from user research, to design, to QA.</p>
-        </div>
-      </div>
-`,
+        </section>`,
     // content
     ``
 );
