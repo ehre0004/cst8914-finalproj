@@ -71,8 +71,9 @@ contents.services = new Content(
           <p>Dedicated space or programs designed to cultivate empathy and understanding among individuals towards the challenges faced by people with disabilities in using technology and interacting with various environments.</p>
           <img id="thumbsEmoji" src="images/services.png" alt = ""> 
         </section>
-
-
+    `,
+    // content
+    `
         <section id="content2" class="container">
           <h2 class="h2">Empathy Lab days and workshops</h2>
           <p>The lab days and workshops typically provide hands-on experiences, simulations, and interactions with assistive technologies, tools, and scenarios that replicate the obstacles individuals with disabilities encounter daily.</p>
@@ -89,8 +90,6 @@ contents.services = new Content(
           <h2 class="header4">Usability testing</h2>
           <p>Go beyond WCAG! Involve individuals with disabilities in usability testing to gather valuable insights for refining product strategy and identifying accessibility concerns at an early stage when solutions are more feasible and cost-effective. You have access to a diverse community of people with disabilities, who use various assistive technologies. With technical expertise ranging from novice to expert, our community can support your product lifecycle from user research, to design, to QA.</p>
         </section>`,
-    // content
-    ``
 );
 // contact page
 contents.contact = new Content(
