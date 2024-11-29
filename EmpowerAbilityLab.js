@@ -21,6 +21,8 @@ class Content {
     }
 }
 
+var titleExt = " - Empower Ability Labs";
+
 // navigation object to map pages to
 var contents = {
     home: new Content('' ,'', ''),
@@ -174,7 +176,7 @@ contents.contact = new Content(
  */
 function loadContent(page) {
     contents[page].load();
-    document.title = contents[page].title + " - Empower Ability Labs";
+    document.title = contents[page].title + titleExt;
 
     // Call the setupContactForm function if the contact page is loaded
     if (page === 'contact') {
@@ -561,7 +563,7 @@ for (let i=0; i<navlinks.length; i++) {
 function actionOnClick(e) {
     e.preventDefault();
     let page = e.currentTarget.getAttribute('href');
-    loadContent(page);
+    window.history.pushState({page: page}, null, page);
 }
 
 /**
@@ -624,9 +626,17 @@ window.onpopstate = function(event){
         
     }    
 };
-*/ 
+*/
+
+window.addEventListener("popstate", (event) => {
+    console.log("state: "+event.state);
+    if (event.state !== null) {
+        loadContent(event.state.page);
+    }
+});
+ 
 //ToDO: have to find the event and states to go with the history.push functions
-history.replaceState(state, null, './');
+history.replaceState({page: "home"}, null, './');
 
 
 /* ********************************** END NAVIGATION **************************************** */
