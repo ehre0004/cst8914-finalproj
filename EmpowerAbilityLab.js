@@ -555,6 +555,15 @@ for (let i=0; i<navlinks.length; i++) {
     navlinks.item(i).addEventListener("keyup", actionOnKeyUp, false);
 }
 
+/*
+ * Event listener that handles page loading, using state object's "page" property.
+ */
+window.addEventListener("popstate", (event) => { // thanks to Catherine Daigle, edited by Rae Ehret
+    if (event.state !== null) {
+        loadContent(event.state.page);
+    }
+});
+
 /**
  * Prevent default behaviour, i.e. not navigating by href value
  * and tabbing behaviour.
@@ -619,7 +628,7 @@ loadContent('home');
 /*
 window.history.pushState(state, "", page);  
 
-window.onpopstate = function(event){
+window.onpopstate = function(event){ // rewrote this somewhere near the actionOnClick(e) area!
     if (event.state) { 
         state = event.state; 
       }
@@ -628,13 +637,6 @@ window.onpopstate = function(event){
     }    
 };
 */
-
-window.addEventListener("popstate", (event) => {
-    console.log("state: "+event.state);
-    if (event.state !== null) {
-        loadContent(event.state.page);
-    }
-});
  
 //ToDO: have to find the event and states to go with the history.push functions
 // Rae notes: Had to comment this out as I implemented Catherine's history.pushState into actionOnClick(e)
