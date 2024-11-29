@@ -564,6 +564,7 @@ function actionOnClick(e) {
     e.preventDefault();
     let page = e.currentTarget.getAttribute('href');
     window.history.pushState({page: page}, null, page);
+    loadContent(page);
 }
 
 /**
