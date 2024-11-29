@@ -623,7 +623,10 @@ function actionOnKeyUp(e) {
 
 
 // TODO: add history push state
-loadContent('home');
+if (window.history.state == null) {
+    loadContent('home');
+    history.replaceState({page: "home"}, null, "./");
+}
 
 /*
 window.history.pushState(state, "", page);  
