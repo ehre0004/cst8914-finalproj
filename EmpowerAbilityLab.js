@@ -637,7 +637,9 @@ window.addEventListener("popstate", (event) => {
 });
  
 //ToDO: have to find the event and states to go with the history.push functions
-history.replaceState({page: "home"}, null, './');
+// Rae notes: Had to comment this out as I implemented Catherine's history.pushState into actionOnClick(e)
+// (so I could pass a state obj with a 'page' property), and this was overriding that
+//history.replaceState({page: "home"}, null, './');
 
 
 /* ********************************** END NAVIGATION **************************************** */
