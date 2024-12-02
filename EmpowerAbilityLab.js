@@ -160,11 +160,11 @@ contents.contact = new Content(
                    </div>
                </div>
    
-               <!-- Event Details -->
-               <div class="form-group">
-                   <label for="event-details">Tell us about your event <span aria-hidden="true">*</span>:</label>
-                   <textarea class="form-control" id="event-details" rows="4" placeholder="Provide details about your event" aria-required="true"></textarea>
-               </div>
+                <!-- Event Details --> 
+                <div class="form-group" id="event-details-group" style="display: none;">
+                    <label for="event-details">Tell us about your event <span class="required-indicator" aria-hidden="true" style="display: none;">*</span>:</label>
+                    <textarea class="form-control" id="event-details" rows="4" placeholder="Provide details about your event"></textarea>
+                </div>
    
                <!-- Email Updates Toggle Switch -->
                <div class="form-group">
@@ -201,12 +201,47 @@ function setupContactForm() {
     const contactForm = document.getElementById('contact-form');
 
     if (contactForm) {
+        // Get references to the elements
+        const speakerCheckbox = document.getElementById('speaker');
+        const eventDetailsGroup = document.getElementById('event-details-group');
+        const eventDetailsField = document.getElementById('event-details');
+        const requiredIndicator = eventDetailsGroup.querySelector('.required-indicator');
+        const screenReaderNotification = document.getElementById('screenreader-notification'); // Get the live region
+
+        // Function to toggle event details visibility
+        function toggleEventDetails() {
+            if (speakerCheckbox.checked) {
+                // Show event details
+                eventDetailsGroup.style.display = '';
+                // Set required attribute
+                eventDetailsField.setAttribute('aria-required', 'true');
+                // Show required indicator
+                requiredIndicator.style.display = '';
+                // Announce to screen reader users
+                updateLiveRegion(screenReaderNotification, "Event details field is now visible and required.");
+            } else {
+                // Hide event details
+                eventDetailsGroup.style.display = 'none';
+                // Remove required attribute
+                eventDetailsField.removeAttribute('aria-required');
+                // Hide required indicator
+                requiredIndicator.style.display = 'none';
+                // Announce to screen reader users
+                updateLiveRegion(screenReaderNotification, "Event details field is now hidden.");
+            }
+        }
+
+        // Call the function initially to set the correct visibility
+        toggleEventDetails();
+
+        // Add event listener
+        speakerCheckbox.addEventListener('change', toggleEventDetails);
+
         contactForm.addEventListener('submit', function (e) {
             e.preventDefault();
 
             // Clear previous alerts
             const alertRegion = document.getElementById('alert-region');
-            const screenReaderNotification = document.getElementById('screenreader-notification');
             alertRegion.innerHTML = '';
             alertRegion.className = 'alert-region'; // Reset classes
 
@@ -214,11 +249,11 @@ function setupContactForm() {
             const businessName = document.getElementById('business-name').value.trim();
             const phoneNumber = document.getElementById('phone-number').value.trim();
             const email = document.getElementById('email').value.trim();
-            const eventDetails = document.getElementById('event-details').value.trim();
             const awareness = document.getElementById('awareness').checked;
-            const speaker = document.getElementById('speaker').checked;
+            const speaker = speakerCheckbox.checked;
             const usability = document.getElementById('usability').checked;
             const emailUpdates = document.getElementById('email-updates').checked;
+            const eventDetails = eventDetailsField.value.trim();
 
             // Validation logic
             const errors = [];
@@ -241,11 +276,12 @@ function setupContactForm() {
                 errors.push("You must select at least one topic to talk about.");
             }
 
-            if (!eventDetails) {
+            // Only validate event details if speaker is checked
+            if (speaker && !eventDetails) {
                 errors.push("Event details are required.");
             }
 
-                // Handle validation errors
+            // Handle validation errors
             if (errors.length > 0) {
                 // Apply alert classes to alertRegion
                 alertRegion.className = 'alert alert-danger alert-region'; // Assuming 'alert' is a base class
@@ -326,12 +362,29 @@ function setupContactForm() {
             alertRegion.focus();
 
             // Update the live region to announce the alert with a hidden timestamp
-            updateLiveRegion(screenreaderNotification, "");
+            updateLiveRegion(screenReaderNotification, "");
 
         });
     }
 }
-    
+
+/**
+ * Updates the live region to ensure screen readers announce the content.
+ * Appends a timestamp within an aria-hidden span to make each message unique without being read aloud.
+ * 
+ * @param {HTMLElement} liveRegion - The live region element.
+ * @param {string} message - The message to announce.
+ */
+function updateLiveRegion(liveRegion, message) {
+    // Clear previous content
+    liveRegion.innerHTML = '';
+
+    // Use a timeout to ensure the screen reader registers the change
+    setTimeout(() => {
+        // Append the message with a unique identifier that is hidden from screen readers
+        liveRegion.innerHTML = `${message} <span aria-hidden="true">${new Date().getTime()}</span>`;
+    }, 100);
+}
 
 /**
  * Updates the live region to ensure screen readers announce the content.
