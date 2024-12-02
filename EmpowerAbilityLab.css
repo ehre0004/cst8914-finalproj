@@ -11,6 +11,11 @@
     outline: 2px blue solid !important;
 }
 
+a.navbar-brand img {
+    height: 2em;
+    width: auto;
+}
+
 .alert-region {
     margin-bottom: 1rem;
 }

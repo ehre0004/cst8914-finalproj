@@ -21,6 +21,8 @@ class Content {
     }
 }
 
+var titleExt = " - Empower Ability Labs";
+
 // navigation object to map pages to
 var contents = {
     home: new Content('' ,'', ''),
@@ -62,49 +64,35 @@ contents.home = new Content(
     </div>`
 );
 
-// TODO: services page
 contents.services = new Content(
     // title
     `Services`,
     // jumbo
-    `      <div class="content1">
-        <div id="content1" class="container">
-          <!-- Your jumbotron content should not be in this container! See the EmpowerAbilityLab.js and search for the TODO's e.g., contents.home / contents.services / contents.contact -->
-          <h1 class="h1">Welcome to Empower Ability Labs Services!</h1>
+    `  <!-- Banner Section -->
+       <section id="content1" class="container">
+          <h1 class="h1" tabindex="-1">Welcome to Empower Ability Labs Services!</h1>
           <p>Dedicated space or programs designed to cultivate empathy and understanding among individuals towards the challenges faced by people with disabilities in using technology and interacting with various environments.</p>
           <img id="thumbsEmoji" src="images/services.png" alt = ""> 
-        </div>
-      </div>
-
-
-      <div class="content2">
-        <div id="content2" class="container">
-          <!-- Your jumbotron content should not be in this container! See the EmpowerAbilityLab.js and search for the TODO's e.g., contents.home / contents.services / contents.contact -->
+        </section>
+    `,
+    // content
+    `   <!-- 1st Content Section -->
+        <section id="content2" class="container">
           <h2 class="h2">Empathy Lab days and workshops</h2>
           <p>The lab days and workshops typically provide hands-on experiences, simulations, and interactions with assistive technologies, tools, and scenarios that replicate the obstacles individuals with disabilities encounter daily.</p>
-        </div>
-      </div>
+        </section>
 
-
-      <div class="content3">
-        <div id="content3" class="container">
-          <!-- Your jumbotron content should not be in this container! See the EmpowerAbilityLab.js and search for the TODO's e.g., contents.home / contents.services / contents.contact -->
+        <!-- 2nd Content Section -->
+        <section id="content3" class="container">
           <h2 class="header3">Inspirational speakers</h2>
           <p>Invite a speaker with disabilities to take share their unique journey. This captivating addition to your upcoming event will offer insights that resonate, inspire, educate, and enrich your team collective understanding of inclusion.</p>
-        </div>
-      </div>
+        </section>
 
-
-      <div class="content4">
-        <div id="content4" class="container">
-          <!-- Your jumbotron content should not be in this container! See the EmpowerAbilityLab.js and search for the TODO's e.g., contents.home / contents.services / contents.contact -->
+        <!-- 3rd Content Section -->
+        <section id="content4" class="container">
           <h2 class="header4">Usability testing</h2>
           <p>Go beyond WCAG! Involve individuals with disabilities in usability testing to gather valuable insights for refining product strategy and identifying accessibility concerns at an early stage when solutions are more feasible and cost-effective. You have access to a diverse community of people with disabilities, who use various assistive technologies. With technical expertise ranging from novice to expert, our community can support your product lifecycle from user research, to design, to QA.</p>
-        </div>
-      </div>
-`,
-    // content
-    ``
+        </section>`,
 );
 // contact page
 contents.contact = new Content(
@@ -188,7 +176,7 @@ contents.contact = new Content(
  */
 function loadContent(page) {
     contents[page].load();
-    document.title = contents[page].title + " - Empower Ability Labs";
+    document.title = contents[page].title + titleExt;
 
     // Call the setupContactForm function if the contact page is loaded
     if (page === 'contact') {
@@ -620,6 +608,15 @@ for (let i=0; i<navlinks.length; i++) {
     navlinks.item(i).addEventListener("keyup", actionOnKeyUp, false);
 }
 
+/*
+ * Event listener that handles page loading, using state object's "page" property.
+ */
+window.addEventListener("popstate", (event) => { // thanks to Catherine Daigle, edited by Rae Ehret
+    if (event.state !== null) {
+        loadContent(event.state.page);
+    }
+});
+
 /**
  * Prevent default behaviour, i.e. not navigating by href value
  * and tabbing behaviour.
@@ -628,6 +625,7 @@ for (let i=0; i<navlinks.length; i++) {
 function actionOnClick(e) {
     e.preventDefault();
     let page = e.currentTarget.getAttribute('href');
+    window.history.pushState({page: page}, null, page);
     loadContent(page);
 }
 
@@ -675,7 +673,31 @@ function actionOnKeyUp(e) {
 
 /* ****************************************************************************************** */
 
+
+
 // TODO: add history push state
-loadContent('home');
+if (window.history.state == null) {
+    loadContent('home');
+    history.replaceState({page: "home"}, null, "./");
+}
+
+/*
+window.history.pushState(state, "", page);  
+
+window.onpopstate = function(event){ // rewrote this somewhere near the actionOnClick(e) area!
+    if (event.state) { 
+        state = event.state; 
+      }
+    else {
+        
+    }    
+};
+*/
+ 
+//ToDO: have to find the event and states to go with the history.push functions
+// Rae notes: Had to comment this out as I implemented Catherine's history.pushState into actionOnClick(e)
+// (so I could pass a state obj with a 'page' property), and this was overriding that
+//history.replaceState({page: "home"}, null, './');
+
 
 /* ********************************** END NAVIGATION **************************************** */
