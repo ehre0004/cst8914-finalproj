@@ -164,7 +164,7 @@ contents.contact = new Content(
                </div>
    
                <!-- Submit Button -->
-               <button type="submit" class="btn btn-primary">Schedule a Call</button>
+               <button type="submit" class="btn btn-dark">Schedule a Call</button>
            </form>
        </div>
       `
