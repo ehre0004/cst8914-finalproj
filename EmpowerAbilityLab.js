@@ -712,10 +712,10 @@ navbarToggleButton.addEventListener("click", function (event) {
 
 
 
-// TODO: add history push state
+// add history push state
 if (window.history.state == null) {
     loadContent('home');
-    history.replaceState({page: "home"}, null, "./");
+    history.replaceState({page: "home"}, null, "./#home");
 }
 
 /*
