@@ -179,9 +179,7 @@ a {
 
 /*Emoji Image Style for Services*/
 #thumbsEmoji{
-    position: relative;
-    left: 1000px;
-    bottom: 20px;
+    float: right;
     width: 100px;
 }
 

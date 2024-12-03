@@ -71,8 +71,8 @@ contents.services = new Content(
     `  <!-- Banner Section -->
        <section id="content1" class="container">
           <h1 class="h1" tabindex="-1">Welcome to Empower Ability Labs Services!</h1>
-          <p>Dedicated space or programs designed to cultivate empathy and understanding among individuals towards the challenges faced by people with disabilities in using technology and interacting with various environments.</p>
           <img id="thumbsEmoji" src="images/services.png" alt = ""> 
+          <p>Dedicated space or programs designed to cultivate empathy and understanding among individuals towards the challenges faced by people with disabilities in using technology and interacting with various environments.</p>
         </section>
     `,
     // content
