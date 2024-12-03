@@ -154,15 +154,14 @@ contents.contact = new Content(
                     <textarea class="form-control" id="event-details" rows="4" placeholder="Provide details about your event"></textarea>
                 </div>
    
-               <!-- Email Updates Toggle Switch -->
-               <div class="form-group">
-                   <label for="email-updates">Receive emails about updates and services:</label>
-                   <div class="toggle-switch">
-                       <input type="checkbox" id="email-updates" name="email-updates">
-                       <label for="email-updates"></label>
-                   </div>
-               </div>
-   
+                <!-- Email Updates Toggle Switch -->
+                <div class="form-group">
+                    <label for="email-updates">Receive emails about updates and services:</label>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="email-updates" name="email-updates" role="switch" aria-checked="false">
+                        <span class="slider" aria-hidden="true"></span>
+                    </div>
+                </div>   
                <!-- Submit Button -->
                <button type="submit" class="btn btn-dark">Schedule a Call</button>
            </form>

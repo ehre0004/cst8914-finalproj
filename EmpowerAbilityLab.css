@@ -95,15 +95,18 @@ a {
 }
 
 .toggle-switch input[type="checkbox"] {
-    position: absolute;
     opacity: 0;
     width: 50px;
     height: 24px;
     margin: 0;
     cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
 }
 
-.toggle-switch label {
+.toggle-switch .slider {
     position: absolute;
     top: 0;
     left: 0;
@@ -111,11 +114,10 @@ a {
     height: 24px;
     background-color: #ccc;
     border-radius: 34px;
-    cursor: pointer;
     transition: background-color 0.3s;
 }
 
-.toggle-switch label::after {
+.toggle-switch .slider::before {
     content: '';
     position: absolute;
     top: 2px;
@@ -127,15 +129,18 @@ a {
     transition: transform 0.3s;
 }
 
-.toggle-switch input[type="checkbox"]:checked + label {
+.toggle-switch input[type="checkbox"]:checked + .slider {
     background-color: #28a745; /* Green when checked */
 }
 
-.toggle-switch input[type="checkbox"]:checked + label::after {
+.toggle-switch input[type="checkbox"]:checked + .slider::before {
     transform: translateX(26px); /* Move the knob */
 }
 
-.toggle-switch input[type="checkbox"]:focus + label {
+/* Focus styles */
+.toggle-switch input[type="checkbox"]:focus + .slider {
+    outline: 2px solid #28a745; /* Green outline */
+    outline-offset: 2px;
     box-shadow: 0 0 0 2px rgba(40, 167, 69, 0.25); /* Focus ring */
 }
 
