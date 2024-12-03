@@ -622,6 +622,7 @@ window.addEventListener("popstate", (event) => { // thanks to Catherine Daigle, 
  */
 function getPageFromHref(event) {
     let page = event.currentTarget.getAttribute('href');
+    console.log('href='+page);
     return page.replace('#','');
 }
 
@@ -633,6 +634,7 @@ function getPageFromHref(event) {
 function actionOnClick(e) {
     e.preventDefault();
     let page = getPageFromHref(e);
+    console.log('page='+page);
     window.history.pushState({page: page}, null, page);
     loadContent(page);
 }
