@@ -680,10 +680,23 @@ function actionOnKeyUp(e) {
 	} else if (e.keyCode == 37) { // left key
         newindex = ((index - 1) < 0 ? 2 : index - 1)
 		moveIndexAndSetTabindex(index, newindex);
-	} else if (e.keyCode == 13) {
+	} else if (e.keyCode == 36) {
+        newindex = 0;
+        moveIndexAndSetTabindex(index, newindex);
+    } else if (e.keyCode == 35) {
+        newindex = 2;
+        moveIndexAndSetTabindex(index, newindex);
+    } else if (e.keyCode == 13) {
         findH1AndFocus();
     }
 }
+
+/* TODO: addEvent to button to toggle "show" class on 'navbarsExampleDefault' */
+var navbarToggleButton = document.getElementsByClassName("navbar-toggler").item(0); // there should only be one button fetched, so index is 0
+var navbarDiv = document.getElementById("navbarsExampleDefault");
+navbarToggleButton.addEventListener("click", function (event) {
+    navbarDiv.classList.toggle("show");
+}, false);
 
 /* ****************************************************************************************** */
 
