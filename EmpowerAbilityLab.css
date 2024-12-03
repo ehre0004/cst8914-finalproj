@@ -18,9 +18,9 @@ a.navbar-brand img {
 .navbar-custom {
     background-color: rgb(224, 223, 215); /*custom beige because navbar failed contrast*/
 }
-.nav-link{
+a {
     color: #001cd3; /* darker blue for link */
-}
+  }
 
 .alert-region {
     margin-bottom: 1rem;
