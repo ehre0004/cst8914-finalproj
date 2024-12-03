@@ -15,6 +15,12 @@ a.navbar-brand img {
     height: 2em;
     width: auto;
 }
+.navbar-custom {
+    background-color: rgb(224, 223, 215); /*custom beige because navbar failed contrast*/
+}
+a {
+    color: #021bbf; /* darker blue for link */
+  }
 
 .alert-region {
     margin-bottom: 1rem;
@@ -198,7 +204,7 @@ a.navbar-brand img {
 
 /* Modal Header */
 .modal-header {
-    background-color: #4b535c; /* Match the navbar color */
+    background-color: #383a3c; /* Match the navbar color */
     padding: 1rem;
     border-top-left-radius: 16px;
     border-top-right-radius: 16px;
@@ -230,7 +236,7 @@ a.navbar-brand img {
 /* Close Button */
 .close-button {
     padding: 12px 24px;
-    background-color: #6c757d;
+    background-color: #383a3c;
     color: #fff;
     border: none;
     border-radius: 5px; /* Rounded button */
@@ -241,7 +247,7 @@ a.navbar-brand img {
 
 .close-button:hover,
 .close-button:focus {
-    background-color: #5a6268;
+    background-color: #1b0d49;
     outline: none;
 }
 
