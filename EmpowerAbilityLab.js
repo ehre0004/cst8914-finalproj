@@ -617,13 +617,22 @@ window.addEventListener("popstate", (event) => { // thanks to Catherine Daigle, 
 });
 
 /**
+ * literally just removes the hashtag
+ * @param {Event} event 
+ */
+function getPageFromHref(event) {
+    let page = event.currentTarget.getAttribute('href');
+    return page.replace('#','');
+}
+
+/**
  * Prevent default behaviour, i.e. not navigating by href value
  * and tabbing behaviour.
  * @param {Event} e 
  */
 function actionOnClick(e) {
     e.preventDefault();
-    let page = e.currentTarget.getAttribute('href');
+    let page = getPageFromHref(e);
     window.history.pushState({page: page}, null, page);
     loadContent(page);
 }
