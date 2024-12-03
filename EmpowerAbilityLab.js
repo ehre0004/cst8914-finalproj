@@ -603,16 +603,30 @@ function findH1AndFocus() {
 }
 
 /**
+ * moves focus to new index, and changes tabindex of old and new navlinks
+ * @param {*} index the old index
+ * @param {*} newindex the new index
+ */
+function moveIndexAndSetTabindex(index, newindex) {
+    navlinks[newindex].focus();
+    navlinks[index].setAttribute("tabindex", "-1")
+    navlinks[newindex].setAttribute("tabindex", "0");
+}
+
+/**
  * Detects key presses from *event paramater (e)*, listens for left/right keys, and changes to previous/next in list of global variable `navlinks`.
  * Use `getIndexOfHTMLCollectionByAttribute` to find the index.
  * @param {Event} e 
  */
 function actionOnKeyUp(e) {
     let index = getIndexOfHTMLCollectionByAttribute(navlinks, e.target, 'href');
+    let newindex = index;
     if (e.keyCode == 39) { // right key
-		navlinks[(index + 1) % 3].focus();
+        newindex = (index + 1) % 3;
+		moveIndexAndSetTabindex(index, newindex);
 	} else if (e.keyCode == 37) { // left key
-		navlinks[((index - 1) < 0 ? 2 : index - 1)].focus();
+        newindex = ((index - 1) < 0 ? 2 : index - 1)
+		moveIndexAndSetTabindex(index, newindex);
 	} else if (e.keyCode == 13) {
         findH1AndFocus();
     }
