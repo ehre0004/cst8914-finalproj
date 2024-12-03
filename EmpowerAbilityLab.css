@@ -16,7 +16,7 @@ a.navbar-brand img {
     width: auto;
 }
 .navbar-custom {
-    background-color: rgb(224, 223, 215); /*custom beige because navbar failed contrast*/
+    background-color: #9FA6B4 !important; /* trying a shade of gray with 4.5+:1 contrast */
 }
 
 .navbar-toggler-icon {
@@ -36,7 +36,11 @@ div.navbar > nav:has(#navbarsExampleDefault.show) {
 }
 
 a {
-    color: #021bbf; /* darker blue for link */
+    color: navy; /* darker blue for link */
+}
+
+a.nav-link {
+    color: navy;
 }
 
 /* ***************************** Contact *********************************** */
