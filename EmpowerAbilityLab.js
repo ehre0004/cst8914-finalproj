@@ -714,8 +714,8 @@ navbarToggleButton.addEventListener("click", function (event) {
 
 // add history push state
 if (window.history.state == null) {
-    loadContent('home');
-    history.replaceState({page: "home"}, null, "./#home");
+    let currentHref = (window.location.href == null || window.location.href == '') ? 'home' : window.location.href;
+    history.replaceState({page: currentHref}, null, "./#"+currentHref);
 }
 
 /*
