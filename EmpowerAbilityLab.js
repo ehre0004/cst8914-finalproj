@@ -715,11 +715,6 @@ window.addEventListener("click", function (event) {
     if (navbarDiv.classList.contains("show")) {
         navbarDiv.classList.remove("show");
         navbarDiv.classList.add("collapse");
-        if (this.window.screen.availWidth < 768) {
-            navbarDiv.setAttribute("aria-hidden", "true");
-        } else {
-            navbarDiv.setAttribute("aria-hidden", "false");
-        }
         menuButton.setAttribute("aria-expanded", "false");
     }
 }, false);
@@ -730,14 +725,8 @@ navbarToggleButton.addEventListener("click", function (event) {
     navbarDiv.classList.toggle("show");
     navbarDiv.classList.toggle("collapse");
     if (navbarDiv.classList.contains("show")) {
-        navbarDiv.removeAttribute("aria-hidden");
         menuButton.setAttribute("aria-expanded", "true");
     } else {
-        if (window.screen.availWidth < 768) {
-            navbarDiv.setAttribute("aria-hidden", "true");
-        } else {
-            navbarDiv.setAttribute("aria-hidden", "false");
-        }
         menuButton.setAttribute("aria-expanded", "false");
     }
 }, false);
