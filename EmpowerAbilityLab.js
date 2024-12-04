@@ -718,7 +718,7 @@ window.addEventListener("click", function (event) {
         if (this.window.screen.availWidth < 768) {
             navbarDiv.setAttribute("aria-hidden", "true");
         } else {
-            navbarDiv.removeAttribute("aria-hidden");
+            navbarDiv.setAttribute("aria-hidden", "false");
         }
         menuButton.setAttribute("aria-expanded", "false");
     }
@@ -736,7 +736,7 @@ navbarToggleButton.addEventListener("click", function (event) {
         if (window.screen.availWidth < 768) {
             navbarDiv.setAttribute("aria-hidden", "true");
         } else {
-            navbarDiv.removeAttribute("aria-hidden");
+            navbarDiv.setAttribute("aria-hidden", "false");
         }
         menuButton.setAttribute("aria-expanded", "false");
     }
