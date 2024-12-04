@@ -687,6 +687,7 @@ function moveIndexAndSetTabindex(index, newindex) {
 function actionOnKeyUp(e) {
     let index = getIndexOfHTMLCollectionByAttribute(navlinks, e.target, 'href');
     let newindex = index;
+    console.log("keyCode="+e.keyCode);
     if (e.keyCode == 39) { // right key
         newindex = (index + 1) % 3;
 		moveIndexAndSetTabindex(index, newindex);
