@@ -28,10 +28,10 @@ a.navbar-brand img {
 div.show ul.nav {
     display: block;
 }
-header.navbar:has(#navbarsExampleDefault.show) {
+header.navbar:has(#navbarSupportedContent.show) {
     align-items: start;
 }
-header.navbar > nav:has(#navbarsExampleDefault.show) {
+header.navbar > nav:has(#navbarSupportedContent.show) {
     text-align: right;
 }
 
