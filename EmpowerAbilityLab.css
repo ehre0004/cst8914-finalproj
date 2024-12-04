@@ -187,6 +187,12 @@ a.nav-link {
     width: 100px;
 }
 
+/*Emoji Image Style for schedule call*/
+#callerEmoji{
+    float: right;
+    width: 100px;
+}
+
 /* ****************************************** MODAL STYLES ****************************************** */
 
 /* Modal Overlay */

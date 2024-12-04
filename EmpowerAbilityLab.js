@@ -100,7 +100,9 @@ contents.contact = new Content(
       `Schedule a Call`,
       // jumbotron
       `<h1 class="h2" tabindex="-1">Schedule a Call</h1>
-          <p>At Empower Ability Labs, we’re excited to connect with you! Whether you’re looking to enhance accessibility, invite an inspiring speaker, or explore usability testing, we’re here to help. Fill out the form below to schedule a call and take the first step toward creating inclusive digital experiences.</p>`,
+          <img id="callerEmoji" src="images/scheduleacall.png" alt = ""> 
+          <p>At Empower Ability Labs, we’re excited to connect with you! Whether you’re looking to enhance accessibility, invite an inspiring speaker, or explore usability testing, we’re here to help. Fill out the form below to schedule a call and take the first step toward creating inclusive digital experiences.</p>
+        `,
       // content
       `
        <div class="container">
