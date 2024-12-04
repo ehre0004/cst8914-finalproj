@@ -123,7 +123,7 @@ contents.contact = new Content(
    
                <!-- Phone Number -->
                <div class="form-group">
-                   <label for="phone-number">Phone Number <span aria-hidden="true">*</span>:</label>
+                   <label for="phone-number">Phone Number <span aria-hidden="true" style = "color:red;">*</span>:</label>
                    <input type="tel" class="form-control" id="phone-number" placeholder="Enter your phone number" aria-required="true">
                </div>
    
