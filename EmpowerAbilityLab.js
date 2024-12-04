@@ -708,7 +708,14 @@ function actionOnKeyUp(e) {
 var navbarToggleButton = document.getElementsByClassName("navbar-toggler").item(0); // there should only be one button fetched, so index is 0
 var navbarDiv = document.getElementById("navbarSupportedContent");
 var menuButton = document.getElementById("menutoggle");
+window.addEventListener("click", function (event) {
+    if (navbarDiv.classList.contains("show")) {
+        navbarDiv.classList.remove("show");
+        navbarDiv.setAttribute("aria-expanded", "false");
+    }
+}, false);
 navbarToggleButton.addEventListener("click", function (event) {
+    e.stopPropagation();
     navbarDiv.classList.toggle("show");
     if (navbarDiv.classList.contains("show")) {
         menuButton.setAttribute("aria-expanded", "true");
@@ -716,12 +723,6 @@ navbarToggleButton.addEventListener("click", function (event) {
         menuButton.setAttribute("aria-expanded", "false");
     }
 }, false);
-window.addEventListener("click", function (event) {
-    if (navbarDiv.classList.contains("show")) {
-        navbarDiv.classList.remove("show");
-        navbarDiv.setAttribute("aria-expanded", "false");
-    }
-}, false)
 
 /* ****************************************************************************************** */
 
