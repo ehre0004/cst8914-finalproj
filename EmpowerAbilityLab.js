@@ -718,7 +718,7 @@ navbarToggleButton.addEventListener("click", function (event) {
 }, false);
 window.addEventListener("click", function (event) {
     if (navbarDiv.classList.contains("show")) {
-        navbarDiv.classList.toggle("show");
+        navbarDiv.classList.remove("show");
         navbarDiv.setAttribute("aria-expanded", "false");
     }
 }, false)
