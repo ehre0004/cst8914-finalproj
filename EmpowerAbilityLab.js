@@ -735,6 +735,8 @@ navbarToggleButton.addEventListener("click", function (event) {
     } else {
         if (window.screen.availWidth < 768) {
             navbarDiv.classList.setAttribute("aria-hidden", "true");
+        } else {
+            navbarDiv.removeAttribute("aria-hidden");
         }
         menuButton.setAttribute("aria-expanded", "false");
     }
