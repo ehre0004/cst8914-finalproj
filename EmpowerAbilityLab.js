@@ -693,33 +693,47 @@ function actionOnKeyUp(e) {
 	} else if (e.keyCode == 37) { // left key
         newindex = ((index - 1) < 0 ? 2 : index - 1)
 		moveIndexAndSetTabindex(index, newindex);
-	} else if (e.keyCode == 36) {
+	} else if (e.keyCode == 36) { // home
         newindex = 0;
         moveIndexAndSetTabindex(index, newindex);
-    } else if (e.keyCode == 35) {
+    } else if (e.keyCode == 35) { // end
         newindex = 2;
         moveIndexAndSetTabindex(index, newindex);
-    } else if (e.keyCode == 13) {
+    } else if (e.keyCode == 13) { // enter
         findH1AndFocus();
     }
 }
 
-/* TODO: addEvent to button to toggle "show" class on 'navbarsExampleDefault' */
+/* ************************************* Hamburger Menu ******************************************* */
+
 var navbarToggleButton = document.getElementsByClassName("navbar-toggler").item(0); // there should only be one button fetched, so index is 0
 var navbarDiv = document.getElementById("navbarSupportedContent");
 var menuButton = document.getElementById("menutoggle");
+
+/* This closes the hamburger menu, checks for open menu, then closes it (and updates aria-expanded for screenreader users). */
 window.addEventListener("click", function (event) {
     if (navbarDiv.classList.contains("show")) {
         navbarDiv.classList.remove("show");
-        navbarDiv.setAttribute("aria-expanded", "false");
+        navbarDiv.classList.add("collapse");
+        if (this.window.screen.availWidth < 768) {
+            navbarDiv.setAttribute("aria-hidden", "true");
+        }
+        menuButton.setAttribute("aria-expanded", "false");
     }
 }, false);
+
+/* This enables the hamburger menu and changes the aria-expanded so screen readers know it as well. */
 navbarToggleButton.addEventListener("click", function (event) {
     event.stopPropagation();
     navbarDiv.classList.toggle("show");
+    navbarDiv.classList.toggle("collapse");
     if (navbarDiv.classList.contains("show")) {
+        navbarDiv.removeAttribute("aria-hidden");
         menuButton.setAttribute("aria-expanded", "true");
     } else {
+        if (window.screen.availWidth < 768) {
+            navbarDiv.classList.setAttribute("aria-hidden", "true");
+        }
         menuButton.setAttribute("aria-expanded", "false");
     }
 }, false);
@@ -727,31 +741,12 @@ navbarToggleButton.addEventListener("click", function (event) {
 /* ****************************************************************************************** */
 
 
-
-// add history push state
+// add history state and load content on refresh/load from url
 let currentHref = (window.location.hash == null || window.location.hash == '') ? '#home' : window.location.hash;
 console.log("currentHref="+currentHref);
 let page = currentHref.replace('#','');
 history.replaceState({page: page}, null, "./"+currentHref);
 loadContent(page);
-
-/*
-window.history.pushState(state, "", page);  
-
-window.onpopstate = function(event){ // rewrote this somewhere near the actionOnClick(e) area!
-    if (event.state) { 
-        state = event.state; 
-      }
-    else {
-        
-    }    
-};
-*/
- 
-//ToDO: have to find the event and states to go with the history.push functions
-// Rae notes: Had to comment this out as I implemented Catherine's history.pushState into actionOnClick(e)
-// (so I could pass a state obj with a 'page' property), and this was overriding that
-//history.replaceState({page: "home"}, null, './');
 
 
 /* ********************************** END NAVIGATION **************************************** */
