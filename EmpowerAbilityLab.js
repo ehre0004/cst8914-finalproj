@@ -117,25 +117,25 @@ contents.contact = new Content(
            <form id="contact-form" novalidate>
                <!-- Business Name -->
                <div class="form-group">
-                   <label for="business-name">Business Name <span aria-hidden="true" style = "color:red;">*</span>:</label>
+                   <label for="business-name">Business Name <span aria-hidden="true" style = "color:#B20000;">*</span>:</label>
                    <input type="text" class="form-control" id="business-name" placeholder="Enter your business name" aria-required="true">
                </div>
    
                <!-- Phone Number -->
                <div class="form-group">
-                   <label for="phone-number">Phone Number <span aria-hidden="true" style = "color:red;">*</span>:</label>
+                   <label for="phone-number">Phone Number <span aria-hidden="true" style = "color:#B20000;">*</span>:</label>
                    <input type="tel" class="form-control" id="phone-number" placeholder="Enter your phone number" aria-required="true">
                </div>
    
                <!-- Email -->
                <div class="form-group">
-                   <label for="email">Email <span aria-hidden="true">*</span>:</label>
+                   <label for="email">Email <span aria-hidden="true" style = "color:#B20000;">*</span>:</label>
                    <input type="email" class="form-control" id="email" placeholder="Enter your email" aria-required="true">
                </div>
    
                <!-- Topics -->
                <div class="form-group">
-                   <label>What would you like to talk about? <span aria-hidden="true">*</span></label>
+                   <label>What would you like to talk about? <span aria-hidden="true" style = "color:#B20000;">*</span></label>
                    <div class="form-check">
                        <input type="checkbox" class="form-check-input" id="awareness">
                        <label class="form-check-label" for="awareness">Awareness lab days and workshops</label>
