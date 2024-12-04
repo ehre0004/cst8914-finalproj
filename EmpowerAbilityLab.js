@@ -129,7 +129,7 @@ contents.contact = new Content(
    
                <!-- Email -->
                <div class="form-group">
-                   <label for="email">Email <span style = "color:#B20000;" aria-hidden="true">*</span>:</label>
+                   <label for="email">Email <span aria-hidden="true" style = "color:#B20000;">*</span>:</label>
                    <input type="email" class="form-control" id="email" placeholder="Enter your email" aria-required="true">
                </div>
    
