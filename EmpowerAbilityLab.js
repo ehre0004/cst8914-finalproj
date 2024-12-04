@@ -715,7 +715,7 @@ window.addEventListener("click", function (event) {
     }
 }, false);
 navbarToggleButton.addEventListener("click", function (event) {
-    e.stopPropagation();
+    event.stopPropagation();
     navbarDiv.classList.toggle("show");
     if (navbarDiv.classList.contains("show")) {
         menuButton.setAttribute("aria-expanded", "true");
