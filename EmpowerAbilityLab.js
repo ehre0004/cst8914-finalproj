@@ -717,6 +717,8 @@ window.addEventListener("click", function (event) {
         navbarDiv.classList.add("collapse");
         if (this.window.screen.availWidth < 768) {
             navbarDiv.setAttribute("aria-hidden", "true");
+        } else {
+            navbarDiv.removeAttribute("aria-hidden");
         }
         menuButton.setAttribute("aria-expanded", "false");
     }
