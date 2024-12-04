@@ -117,7 +117,7 @@ contents.contact = new Content(
            <form id="contact-form" novalidate>
                <!-- Business Name -->
                <div class="form-group">
-                    <p>Required fields are denoted by a<span style = "color:#B20000;">*</span></p> 
+                    <p>Required fields are denoted by a <span style = "color:#B20000;">*</span></p> 
                    <label for="business-name">Business Name <span aria-hidden="true" style = "color:#B20000;">*</span>:</label>
                    <input type="text" class="form-control" id="business-name" placeholder="Enter your business name" aria-required="true">
                </div>
