@@ -123,19 +123,19 @@ contents.contact = new Content(
    
                <!-- Phone Number -->
                <div class="form-group">
-                   <label for="phone-number">Phone Number <span aria-hidden="true" style = "color:red;>*</span>:</label>
+                   <label for="phone-number">Phone Number <span aria-hidden="true">*</span>:</label>
                    <input type="tel" class="form-control" id="phone-number" placeholder="Enter your phone number" aria-required="true">
                </div>
    
                <!-- Email -->
                <div class="form-group">
-                   <label for="email">Email <span aria-hidden="true" style = "color:red;>*</span>:</label>
+                   <label for="email">Email <span aria-hidden="true">*</span>:</label>
                    <input type="email" class="form-control" id="email" placeholder="Enter your email" aria-required="true">
                </div>
    
                <!-- Topics -->
                <div class="form-group">
-                   <label>What would you like to talk about? <span aria-hidden="true" style = "color:red;>*</span></label>
+                   <label>What would you like to talk about? <span aria-hidden="true">*</span></label>
                    <div class="form-check">
                        <input type="checkbox" class="form-check-input" id="awareness">
                        <label class="form-check-label" for="awareness">Awareness lab days and workshops</label>
@@ -152,7 +152,7 @@ contents.contact = new Content(
    
                 <!-- Event Details --> 
                 <div class="form-group" id="event-details-group" style="display: none;">
-                    <label for="event-details">Tell us about your event <span class="required-indicator" aria-hidden="true" style="display: none;" style = "color:red;>*</span>:</label>
+                    <label for="event-details">Tell us about your event <span class="required-indicator" aria-hidden="true" style="display: none;">*</span>:</label>
                     <textarea class="form-control" id="event-details" rows="4" placeholder="Provide details about your event"></textarea>
                 </div>
    
