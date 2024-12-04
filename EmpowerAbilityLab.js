@@ -44,7 +44,7 @@ contents.home = new Content(
         <div class="col-md-4">
             <h2 class="h5">Our Approach</h2>
             <p>Empower Ability Labs utilizes a hands-on approach to raise awareness and promote empathy. Our immersive workshops and lab days provide participants with a unique opportunity to step into the shoes of individuals with disabilities and navigate the world from their perspective.</p>
-            <p><a href="https://www.google.com/search/howsearchworks/our-approach/">Learn more <span class="wb-inv">about our approach</span></a></p>
+            <p><a href="https://www.google.com/search/howsearchworks/our-approach/" title="Learn more about our approach">Learn more <span class="wb-inv">about our approach</span></a></p>
         </div>
         <div class="col-md-4">
             <h2 class="h5">Services</h2>
@@ -54,12 +54,12 @@ contents.home = new Content(
                 <li>Go beyond WCAG compliance!</li>
                 <li>Inspirational speakers.</li>
             </ul>
-            <p><a href="https://www.elevenways.be/en/services">Learn more <span class="wb-inv">about our services</span></a></p>
+            <p><a href="https://www.elevenways.be/en/services" title="Learn more about our services">Learn more <span class="wb-inv">about our services</span></a></p>
         </div>
         <div class="col-md-4">
             <h2 class="h5">Testimonials</h2>
             <p>Invite a speaker with disabilities to share their unique journey. This captivating addition to your upcoming event will offer insights that resonate,  inspire, educate, and enrich your team's understanding of inclusion.</p>
-            <p><a href="https://dictionary.cambridge.org/us/dictionary/english/testimonial">Learn more <span class="wb-inv">about testimonials</span></a></p>
+            <p><a href="https://dictionary.cambridge.org/us/dictionary/english/testimonial" title="Learn more about testimonials">Learn more <span class="wb-inv">about testimonials</span></a></p>
         </div>
     </div>`
 );
